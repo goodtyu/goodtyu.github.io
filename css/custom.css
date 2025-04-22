@@ -1,0 +1,374 @@
+@import "//at.alicdn.com/t/c/font_4893430_1v1qg4wrw3l.css";
+:root {
+  --trans-light: rgba(255, 255, 255, 0.88);
+  --trans-dark: rgba(25, 25, 25, 0.88);
+  --border-style: 1px solid rgb(169, 169, 169);
+  --backdrop-filter: blur(5px) saturate(150%);
+}
+/* 页脚与头图透明 */
+/* #footer {
+  background: transparent !important;
+}
+#page-header {
+  background: transparent !important;
+} */
+
+/* 白天模式遮罩透明 */
+/* #footer::before {
+  background: transparent !important;
+}
+#page-header::before {
+  background: transparent !important;
+} */
+
+/* 夜间模式遮罩透明 */
+/* [data-theme="dark"] #footer::before {
+  background: transparent !important;
+}
+[data-theme="dark"] #page-header::before {
+  background: transparent !important;
+} */
+ 
+/* 页脚文字颜色始终为白色，并带阴影 */
+#footer,
+#footer a,
+#footer .footer-text {
+    color: #fff !important;
+    text-shadow: 0 1px 2px rgba(0, 0, 0, 0.5);
+}
+
+/* 白天模式：页脚半透明黑色背景 */
+:root #footer {
+    background: rgba(0, 0, 0, 0.5) !important;
+}
+
+/* 夜间模式：页脚背景完全透明 */
+[data-theme="dark"] #footer {
+    background: transparent !important;
+}
+/* 白天模式头图遮罩 */
+
+[data-theme="light"] #page-header:before {
+  background-color: rgba(0, 0, 0, 0.18) !important;
+  z-index: -3;
+}
+
+
+/* 头图始终透明 */
+#page-header,
+#page-header::before {
+    background: transparent !important;
+}
+
+/* 页脚遮罩透明（防止主题默认遮罩影响） */
+#footer::before {
+    background: transparent !important;
+}
+
+/* 小冰分类分类磁铁黑夜模式适配 */
+/* 一般状态 */
+[data-theme="dark"] .magnet_link_context {
+  background: #1e1e1e;
+  color: antiquewhite;
+}
+/* 鼠标悬浮状态 */
+[data-theme="dark"] .magnet_link_context:hover {
+  background: #3ecdf1;
+  color: #f2f2f2;
+}
+
+/*停止头像旋转*/
+#aside-content .card-info .card-info-social-icons .social-icon :hover{
+  transform: scale(1.5);
+}
+
+#aside-content .avatar-img :hover{
+  transform: none;
+}
+/* 翻页按钮居中 */
+#pagination {
+  width: 100%;
+  margin: auto;
+}
+
+/* 菜单设置 */
+/* 一级菜单居中 */
+#nav .menus_items {
+  position: absolute !important;
+  width: fit-content !important;
+  left: 50% !important;
+  transform: translateX(-50%) !important;
+}
+/* 子菜单横向展示 */
+/* #nav .menus_items .menus_item:hover .menus_item_child {
+  display: flex !important;
+} */
+/* 这里的2是代表导航栏的第2个元素，即有子菜单的元素，可以按自己需求修改 */
+.menus_items .menus_item:nth-child(2) .menus_item_child {
+  left: 5px;
+}
+
+/* 页面样式调节 */
+
+
+/* 首页文章卡片 */
+#recent-posts > .recent-post-item {
+  background: var(--trans-light);
+  backdrop-filter: var(--backdrop-filter);
+  border-radius: 25px;
+  border: var(--border-style);
+}
+
+/* 首页侧栏卡片 */
+#aside-content .card-widget {
+  background: var(--trans-light);
+  backdrop-filter: var(--backdrop-filter);
+  border-radius: 18px;
+  border: var(--border-style);
+}
+
+/* 文章页、归档页、普通页面 */
+div#post,
+div#page,
+div#archive {
+  background: var(--trans-light);
+  backdrop-filter: var(--backdrop-filter);
+  border: var(--border-style);
+  border-radius: 20px;
+}
+
+/* 导航栏 */
+#page-header.nav-fixed #nav {
+  background: rgba(255, 255, 255, 0.75);
+  backdrop-filter: var(--backdrop-filter);
+}
+
+[data-theme="dark"] #page-header.nav-fixed #nav {
+  background: rgba(0, 0, 0, 0.7) !important;
+}
+/* 设置导航栏其他颜色 */
+/* #page-header.nav-fixed #nav {
+  background: linear-gradient(60deg, #ffd7e4 0, #c8f1ff 93%);
+  opacity: 0.95;
+  backdrop-filter: var(--backdrop-filter);
+}
+[data-theme="dark"] #page-header.nav-fixed #nav {
+  background: rgba(0, 0, 0, 0.95) !important;
+} */
+
+/* 夜间模式遮罩 */
+[data-theme="dark"] #recent-posts > .recent-post-item,
+[data-theme="dark"] #aside-content .card-widget,
+[data-theme="dark"] div#post,
+[data-theme="dark"] div#archive,
+[data-theme="dark"] div#page {
+  background: var(--trans-dark);
+}
+
+
+/* 夜间模式页脚页头遮罩透明 */
+[data-theme="dark"] #footer::before {
+  background: transparent !important;
+}
+[data-theme="dark"] #page-header::before {
+  background: transparent !important;
+}
+
+/* 阅读模式 */
+.read-mode #aside-content .card-widget {
+  background: rgba(158, 204, 171, 0.5) !important;
+}
+.read-mode div#post {
+  background: rgba(158, 204, 171, 0.5) !important;
+}
+
+/* 夜间模式下的阅读模式 */
+[data-theme="dark"] .read-mode #aside-content .card-widget {
+  background: rgba(25, 25, 25, 0.9) !important;
+  color: #ffffff;
+}
+[data-theme="dark"] .read-mode div#post {
+  background: rgba(25, 25, 25, 0.9) !important;
+  color: #ffffff;
+}
+
+/* 定义图标大小 */
+.iconfont {
+  font-family: "iconfont" !important;
+  /* 这里可以自定义图标大小 */
+  font-size: 1.5em;
+  font-style: normal;
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+}
+
+/* 自适应宽度 */
+
+/* 全局宽度 */
+.layout {
+  max-width: 1400px;
+}
+
+/* 侧边卡片栏宽度 */
+.aside-content {
+  max-width: 318px;
+  min-width: 300px;
+}
+
+/* 平板尺寸自适应(不启用侧边栏宽度限制) */
+@media screen and (max-width: 900px) {
+  .aside-content {
+    max-width: none !important;
+    padding: 0 5px 0 5px;
+  }
+}
+
+/* 加载动画的头像设置 */
+.loading-img {
+  background: url(https://pic1.imgdb.cn/item/67fb9d2288c538a9b5cdcd3f.jpg) no-repeat center center;
+  background-size: cover;
+}
+
+/* 自定义背景 */
+/* 由于全屏会出bug，所以直接给他隐藏 */
+
+.winbox {
+  border-radius: 12px;
+  overflow: hidden;
+}
+
+.wb-full {
+  display: none;
+}
+
+.wb-min {
+  background-position: center;
+}
+
+[data-theme='dark'] .wb-body,
+[data-theme='dark'] #changeBgBox {
+  background: #333 !important;
+}
+
+.bgbox {
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: space-between;
+}
+
+.pimgbox,
+.imgbox,
+.box {
+  width: 166px;
+  margin: 10px;
+  background-size: cover
+}
+
+.pimgbox,
+.imgbox {
+  border-radius: 10px;
+  overflow: hidden;
+}
+
+.pimgbox {
+  height: 240px;
+}
+
+.imgbox {
+  height: 95px;
+}
+
+.box {
+  height: 100px;
+}
+
+@media screen and (max-width: 768px) {
+  /* 背景 */
+  .pimgbox,
+  .imgbox,
+  .box {
+      height: 73px;
+      width: 135px;
+  }
+  .pimgbox {
+      height: 205px;
+  }
+  /* 2.0新增内容 */    
+  .wb-min {
+      display: none;
+  }
+  #changeBgBox .wb-body::-webkit-scrollbar {
+      display: none;
+  }
+}
+
+/* 个人信息卡片背景图
+[data-theme="light"] #aside-content > .card-widget.card-info {
+  background-image: url(https://pic1.imgdb.cn/item/67ffba3e88c538a9b5d47a45.jpg);
+  background-repeat: no-repeat;
+  background-attachment: inherit;
+  background-size: 100%;
+}
+[data-theme="dark"] #aside-content > .card-widget.card-info {
+  background-image: url(https://pic1.imgdb.cn/item/67fb9f4288c538a9b5cdd620.jpg);
+  background-repeat: no-repeat;
+  background-attachment: inherit;
+  background-size: 100%;
+} */
+
+/* 加载条 */
+.pace {
+  -webkit-pointer-events: none;
+  pointer-events: none;
+  -webkit-user-select: none;
+  -moz-user-select: none;
+  user-select: none;
+  z-index: 2000;
+  position: fixed;
+  margin: auto;
+  top: 4px;
+  left: 0;
+  right: 0;
+  height: 8px;
+  border-radius: 8px;
+  width: 7rem;
+  background: #eaecf2;
+  border: 1px #e3e8f7;
+  overflow: hidden
+}
+
+.pace-inactive .pace-progress {
+  opacity: 0;
+  transition: .3s ease-in
+}
+
+.pace .pace-progress {
+  -webkit-box-sizing: border-box;
+  -moz-box-sizing: border-box;
+  -ms-box-sizing: border-box;
+  -o-box-sizing: border-box;
+  box-sizing: border-box;
+  -webkit-transform: translate3d(0, 0, 0);
+  -moz-transform: translate3d(0, 0, 0);
+  -ms-transform: translate3d(0, 0, 0);
+  -o-transform: translate3d(0, 0, 0);
+  transform: translate3d(0, 0, 0);
+  max-width: 200px;
+  position: absolute;
+  z-index: 2000;
+  display: block;
+  top: 0;
+  right: 100%;
+  height: 100%;
+  width: 100%;
+  /* linear-gradient(to right, #3494e6, #ec6ead) */
+  background: linear-gradient(to right, #43cea2, #3866ca);
+  animation: gradient 2s ease infinite;
+  background-size: 200%
+}
+
+.pace.pace-inactive {
+  opacity: 0;
+  transition: .3s;
+  top: -8px
+}
