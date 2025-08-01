@@ -1,0 +1,266 @@
+<!DOCTYPE html><html lang="zh-CN" data-theme="light"><head><meta charset="UTF-8"><meta http-equiv="X-UA-Compatible" content="IE=edge"><meta name="viewport" content="width=device-width, initial-scale=1.0,viewport-fit=cover"><title>xshell链接 | 风雨の小窝</title><meta name="author" content="风雨"><meta name="copyright" content="风雨"><meta name="format-detection" content="telephone=no"><meta name="theme-color" content="ffffff"><meta name="description" content="远程链接和排除错误">
+<meta property="og:type" content="article">
+<meta property="og:title" content="xshell链接">
+<meta property="og:url" content="https://aquamind.dpdns.org/2025/06/24/xshell%E9%93%BE%E6%8E%A5/index.html">
+<meta property="og:site_name" content="风雨の小窝">
+<meta property="og:description" content="远程链接和排除错误">
+<meta property="og:locale" content="zh_CN">
+<meta property="og:image" content="https://tc.alcy.cc/i/2025/07/29/6887a911ecbfd.webp">
+<meta property="article:published_time" content="2025-06-24T12:16:46.000Z">
+<meta property="article:modified_time" content="2025-08-01T02:10:50.208Z">
+<meta property="article:author" content="风雨">
+<meta property="article:tag" content="运维">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:image" content="https://tc.alcy.cc/i/2025/07/29/6887a911ecbfd.webp"><script type="application/ld+json">{
+  "@context": "https://schema.org",
+  "@type": "BlogPosting",
+  "headline": "xshell链接",
+  "url": "https://aquamind.dpdns.org/2025/06/24/xshell%E9%93%BE%E6%8E%A5/",
+  "image": "https://tc.alcy.cc/i/2025/07/29/6887a911ecbfd.webp",
+  "datePublished": "2025-06-24T12:16:46.000Z",
+  "dateModified": "2025-08-01T02:10:50.208Z",
+  "author": [
+    {
+      "@type": "Person",
+      "name": "风雨",
+      "url": "https://aquamind.dpdns.org/"
+    }
+  ]
+}</script><link rel="shortcut icon" href="https://pic1.imgdb.cn/item/67fb9d2288c538a9b5cdcd3f.jpg"><link rel="canonical" href="https://aquamind.dpdns.org/2025/06/24/xshell%E9%93%BE%E6%8E%A5/index.html"><link rel="preconnect" href="//cdn.jsdelivr.net"/><link rel="preconnect" href="//busuanzi.ibruce.info"/><link rel="stylesheet" href="/css/index.css"><link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/@fortawesome/fontawesome-free/css/all.min.css"><link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/node-snackbar/dist/snackbar.min.css" media="print" onload="this.media='all'"><script>
+    (() => {
+      
+    const saveToLocal = {
+      set: (key, value, ttl) => {
+        if (!ttl) return
+        const expiry = Date.now() + ttl * 86400000
+        localStorage.setItem(key, JSON.stringify({ value, expiry }))
+      },
+      get: key => {
+        const itemStr = localStorage.getItem(key)
+        if (!itemStr) return undefined
+        const { value, expiry } = JSON.parse(itemStr)
+        if (Date.now() > expiry) {
+          localStorage.removeItem(key)
+          return undefined
+        }
+        return value
+      }
+    }
+
+    window.btf = {
+      saveToLocal,
+      getScript: (url, attr = {}) => new Promise((resolve, reject) => {
+        const script = document.createElement('script')
+        script.src = url
+        script.async = true
+        Object.entries(attr).forEach(([key, val]) => script.setAttribute(key, val))
+        script.onload = script.onreadystatechange = () => {
+          if (!script.readyState || /loaded|complete/.test(script.readyState)) resolve()
+        }
+        script.onerror = reject
+        document.head.appendChild(script)
+      }),
+      getCSS: (url, id) => new Promise((resolve, reject) => {
+        const link = document.createElement('link')
+        link.rel = 'stylesheet'
+        link.href = url
+        if (id) link.id = id
+        link.onload = link.onreadystatechange = () => {
+          if (!link.readyState || /loaded|complete/.test(link.readyState)) resolve()
+        }
+        link.onerror = reject
+        document.head.appendChild(link)
+      }),
+      addGlobalFn: (key, fn, name = false, parent = window) => {
+        if (!false && key.startsWith('pjax')) return
+        const globalFn = parent.globalFn || {}
+        globalFn[key] = globalFn[key] || {}
+        globalFn[key][name || Object.keys(globalFn[key]).length] = fn
+        parent.globalFn = globalFn
+      }
+    }
+  
+      
+      const activateDarkMode = () => {
+        document.documentElement.setAttribute('data-theme', 'dark')
+        if (document.querySelector('meta[name="theme-color"]') !== null) {
+          document.querySelector('meta[name="theme-color"]').setAttribute('content', '#0d0d0d')
+        }
+      }
+      const activateLightMode = () => {
+        document.documentElement.setAttribute('data-theme', 'light')
+        if (document.querySelector('meta[name="theme-color"]') !== null) {
+          document.querySelector('meta[name="theme-color"]').setAttribute('content', 'ffffff')
+        }
+      }
+
+      btf.activateDarkMode = activateDarkMode
+      btf.activateLightMode = activateLightMode
+
+      const theme = saveToLocal.get('theme')
+    
+          theme === 'dark' ? activateDarkMode() : theme === 'light' ? activateLightMode() : null
+        
+      
+      const asideStatus = saveToLocal.get('aside-status')
+      if (asideStatus !== undefined) {
+        document.documentElement.classList.toggle('hide-aside', asideStatus === 'hide')
+      }
+    
+      
+    const detectApple = () => {
+      if (/iPad|iPhone|iPod|Macintosh/.test(navigator.userAgent)) {
+        document.documentElement.classList.add('apple')
+      }
+    }
+    detectApple()
+  
+    })()
+  </script><script>const GLOBAL_CONFIG = {
+  root: '/',
+  algolia: undefined,
+  localSearch: {"path":"/search.xml","preload":false,"top_n_per_article":1,"unescape":false,"languages":{"hits_empty":"未找到符合您查询的内容：${query}","hits_stats":"共找到 ${hits} 篇文章"}},
+  translate: undefined,
+  highlight: {"plugin":"highlight.js","highlightCopy":true,"highlightLang":true,"highlightHeightLimit":230,"highlightFullpage":false,"highlightMacStyle":true},
+  copy: {
+    success: '复制成功',
+    error: '复制失败',
+    noSupport: '浏览器不支持'
+  },
+  relativeDate: {
+    homepage: false,
+    post: false
+  },
+  runtime: '',
+  dateSuffix: {
+    just: '刚刚',
+    min: '分钟前',
+    hour: '小时前',
+    day: '天前',
+    month: '个月前'
+  },
+  copyright: undefined,
+  lightbox: 'null',
+  Snackbar: {"chs_to_cht":"已切换为繁体中文","cht_to_chs":"已切换为简体中文","day_to_night":"已切换为深色模式","night_to_day":"已切换为浅色模式","bgLight":"#49b1f5","bgDark":"#1f1f1f","position":"bottom-right"},
+  infinitegrid: {
+    js: 'https://cdn.jsdelivr.net/npm/@egjs/infinitegrid/dist/infinitegrid.min.js',
+    buttonText: '加载更多'
+  },
+  isPhotoFigcaption: false,
+  islazyloadPlugin: true,
+  isAnchor: false,
+  percent: {
+    toc: true,
+    rightside: true,
+  },
+  autoDarkmode: false
+}</script><script id="config-diff">var GLOBAL_CONFIG_SITE = {
+  title: 'xshell链接',
+  isHighlightShrink: false,
+  isToc: true,
+  pageType: 'post'
+}</script><link rel="stylesheet" href="/css/custom.css" media="defer" onload="this.media='all'"><!-- hexo injector head_end start --><link rel="stylesheet" href="/css/runtime.min.css" media="print" onload="this.media='all'"><link rel="stylesheet" href="https://npm.elemecdn.com/hexo-butterfly-swiper/lib/swiper.min.css" media="print" onload="this.media='all'"><link rel="stylesheet" href="https://npm.elemecdn.com/hexo-butterfly-swiper/lib/swiperstyle.css" media="print" onload="this.media='all'"><link rel="stylesheet" href="https://npm.elemecdn.com/hexo-butterfly-tag-plugins-plus@latest/lib/assets/font-awesome-animation.min.css" media="defer" onload="this.media='all'"><link rel="stylesheet" href="https://npm.elemecdn.com/hexo-butterfly-tag-plugins-plus@latest/lib/tag_plugins.css" media="defer" onload="this.media='all'"><script src="https://npm.elemecdn.com/hexo-butterfly-tag-plugins-plus@latest/lib/assets/carousel-touch.js"></script><!-- hexo injector head_end end --><meta name="generator" content="Hexo 7.3.0"><link rel="stylesheet" href="/css/prism.css" type="text/css"></head><body><div id="loading-box" onclick="document.getElementById(&quot;loading-box&quot;).classList.add(&quot;loaded&quot;)"><div class="loading-bg"><div class="loading-img"></div><div class="loading-image-dot"></div></div></div><script>const preloader = {
+  endLoading: () => {
+    document.body.style.overflow = 'auto';
+    document.getElementById('loading-box').classList.add("loaded")
+  },
+  initLoading: () => {
+    document.body.style.overflow = '';
+    document.getElementById('loading-box').classList.remove("loaded")
+
+  }
+}
+window.addEventListener('load',()=> { preloader.endLoading() })
+
+if (false) {
+  document.addEventListener('pjax:send', () => { preloader.initLoading() })
+  document.addEventListener('pjax:complete', () => { preloader.endLoading() })
+}</script><script>window.paceOptions = {
+  restartOnPushState: false
+}
+
+btf.addGlobalFn('pjaxSend', () => {
+  Pace.restart()
+}, 'pace_restart')
+
+</script><link rel="stylesheet" href="/css/progress_bar.css"/><script src="https://cdn.jsdelivr.net/npm/pace-js/pace.min.js"></script><div id="web_bg" style="background-image: url(https://pic1.imgdb.cn/item/67ffd7d488c538a9b5d490f2.jpg);"></div><div id="sidebar"><div id="menu-mask"></div><div id="sidebar-menus"><div class="avatar-img text-center"><img src= "data:image/gif;base64,R0lGODlhAQABAIAAAAAAAP///yH5BAEAAAAALAAAAAABAAEAAAIBRAA7" data-lazy-src="https://pic1.imgdb.cn/item/67fb9dc888c538a9b5cdcfff.jpg" onerror="this.onerror=null;this.src='/img/friend_404.gif'" alt="avatar"/></div><div class="site-data text-center"><a href="/archives/"><div class="headline">文章</div><div class="length-num">8</div></a><a href="/tags/"><div class="headline">标签</div><div class="length-num">2</div></a><a href="/categories/"><div class="headline">分类</div><div class="length-num">2</div></a></div><div class="menus_items"><div class="menus_item"><a class="site-page" href="/"><i class="fa-fw iconfont icon-shouye"></i><span class="menu_word" style="font-size:17px"> 首页</span></a></div><div class="menus_item"><a class="site-page group hide" href="javascript:void(0);"><i class="fa-fw iconfont icon-wenzhang"></i><span class="menu_word" style="font-size:17px"> 文章</span><i class="fas fa-chevron-down"></i></a><ul class="menus_item_child"><li><a class="site-page child" href="/tags/"><i class="fa-fw iconfont  icon-biaoqian">                   </i><span class="menu_word" style="font-size:15px"> 标签</span></a></li><li><a class="site-page child" href="/categories/"><i class="fa-fw iconfont icon-fenlei">                   </i><span class="menu_word" style="font-size:15px"> 分类</span></a></li></ul></div><div class="menus_item"><a class="site-page" href="/archives/"><i class="fa-fw iconfont icon-guidang"></i><span class="menu_word" style="font-size:17px"> 时间轴</span></a></div><div class="menus_item"><a class="site-page" href="/link/"><i class="fa-fw iconfont icon-lianjie"></i><span class="menu_word" style="font-size:17px"> 友链</span></a></div><div class="menus_item"><a class="site-page" href="/about/"><i class="fa-fw iconfont icon-zhifeiji"></i><span class="menu_word" style="font-size:17px"> 关于</span></a></div></div></div></div><div class="post" id="body-wrap"><header class="post-bg" id="page-header" style="background-image: url(https://tc.alcy.cc/i/2025/07/29/6887a911ecbfd.webp);"><nav id="nav"><span id="blog-info"><a class="nav-site-title" href="/"><span class="site-name">风雨の小窝</span></a><a class="nav-page-title" href="/"><span class="site-name">xshell链接</span></a></span><div id="menus"><a class="meihua faa-parent animated-hover" onclick="toggleWinbox()" title="美化设置-自定义你的风格" id="meihua-button"><svg class="faa-tada icon" style="height:26px;width:26px;fill:currentColor;position:relative;top:8px" aria-hidden="true"><use xlink:href="#icon-tupian1">         </use></svg><div id="search-button"><a class="search faa-parent animated-hover" title="检索站内任何你想要的信息"><svg class="faa-tada icon" style="height:26px;width:24px;fill:currentColor;position:relative;top:6px" aria-hidden="true"><use xlink:href="#icon-a-zaixianchazhaozaixiansousuowangluo"></use></svg></a></div></a><div class="menus_items"><div class="menus_item"><a class="site-page" href="/"><i class="fa-fw iconfont icon-shouye"></i><span class="menu_word" style="font-size:17px"> 首页</span></a></div><div class="menus_item"><a class="site-page group hide" href="javascript:void(0);"><i class="fa-fw iconfont icon-wenzhang"></i><span class="menu_word" style="font-size:17px"> 文章</span><i class="fas fa-chevron-down"></i></a><ul class="menus_item_child"><li><a class="site-page child" href="/tags/"><i class="fa-fw iconfont  icon-biaoqian">                   </i><span class="menu_word" style="font-size:15px"> 标签</span></a></li><li><a class="site-page child" href="/categories/"><i class="fa-fw iconfont icon-fenlei">                   </i><span class="menu_word" style="font-size:15px"> 分类</span></a></li></ul></div><div class="menus_item"><a class="site-page" href="/archives/"><i class="fa-fw iconfont icon-guidang"></i><span class="menu_word" style="font-size:17px"> 时间轴</span></a></div><div class="menus_item"><a class="site-page" href="/link/"><i class="fa-fw iconfont icon-lianjie"></i><span class="menu_word" style="font-size:17px"> 友链</span></a></div><div class="menus_item"><a class="site-page" href="/about/"><i class="fa-fw iconfont icon-zhifeiji"></i><span class="menu_word" style="font-size:17px"> 关于</span></a></div></div><div id="toggle-menu"><span class="site-page"><i class="fas fa-bars fa-fw"></i></span></div></div></nav><div id="post-info"><h1 class="post-title">xshell链接</h1><div id="post-meta"><div class="meta-firstline"><span class="post-meta-date"><i class="far fa-calendar-alt fa-fw post-meta-icon"></i><span class="post-meta-label">发表于</span><time class="post-meta-date-created" datetime="2025-06-24T12:16:46.000Z" title="发表于 2025-06-24 20:16:46">2025-06-24</time><span class="post-meta-separator">|</span><i class="fas fa-history fa-fw post-meta-icon"></i><span class="post-meta-label">更新于</span><time class="post-meta-date-updated" datetime="2025-08-01T02:10:50.208Z" title="更新于 2025-08-01 10:10:50">2025-08-01</time></span><span class="post-meta-categories"><span class="post-meta-separator">|</span><i class="fas fa-inbox fa-fw post-meta-icon"></i><a class="post-meta-categories" href="/categories/%E8%BF%90%E7%BB%B4/">运维</a></span></div><div class="meta-secondline"><span class="post-meta-separator">|</span><span class="post-meta-wordcount"><i class="far fa-file-word fa-fw post-meta-icon"></i><span class="post-meta-label">总字数:</span><span class="word-count">980</span><span class="post-meta-separator">|</span><i class="far fa-clock fa-fw post-meta-icon"></i><span class="post-meta-label">阅读时长:</span><span>4分钟</span></span><span class="post-meta-separator">|</span><span class="post-meta-pv-cv" id="" data-flag-title=""><i class="far fa-eye fa-fw post-meta-icon"></i><span class="post-meta-label">浏览量:</span><span id="busuanzi_value_page_pv"><i class="fa-solid fa-spinner fa-spin"></i></span></span></div></div></div></header><main class="layout" id="content-inner"><div id="post"><article class="container post-content" id="article-container"><h3 id="xshell链接"><a href="#xshell链接" class="headerlink" title="xshell链接"></a>xshell链接</h3><h4 id="1-远程连接操作系统"><a href="#1-远程连接操作系统" class="headerlink" title="1.远程连接操作系统"></a>1.远程连接操作系统</h4><figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br></pre></td><td class="code"><pre><span class="line">IDC机房: 昌平机房 中关村机房 三元桥机房 亦庄机房.. 自建机房</span><br><span class="line">为什么使用远程工具连接虚拟机？</span><br><span class="line">在企业中使用远程连接工具连接Linux服务器远程操作。</span><br><span class="line"></span><br><span class="line">远程连接必要的信息数据</span><br><span class="line">1.IP地址(服务器在网络中唯一的标识 类似家庭住址，门牌号)</span><br><span class="line">局域网(教室 家 公司) 内网   局域网和局域网不能通信 只能在自己的网络内通信</span><br><span class="line">公网(百度 sina 微博 京东 淘宝...) 任意一个有网络的地方都可以直接访问到</span><br><span class="line">虚拟机IP地址: 10.0.0.200/24 24是子网掩码 决定局域网可用的IP地址的数量</span><br><span class="line">192.168.16.1-192.168.16.254 /24</span><br><span class="line">虚拟机: 10.0.0.200/24 虚拟机可以配置的IP地址范围是?</span><br><span class="line">10.0.0.1-10.0.0.254</span><br><span class="line"></span><br><span class="line">2.端口号(表示服务器中是否开启了远程连接的服务)</span><br><span class="line">Linux默认远程连接端口号: 22 默认22端口已经开启的</span><br><span class="line">医院: 1号-&gt;挂号 2号-&gt;交费  窗口对应服务类型</span><br><span class="line"></span><br><span class="line">3.用户名和密码(对应的账号和密码)</span><br><span class="line"></span><br><span class="line">4.协议(windows和linux服务器连接需要使用什么语言通信)</span><br><span class="line">ssh协议</span><br><span class="line"></span><br></pre></td></tr></table></figure>
+<p><img src= "data:image/gif;base64,R0lGODlhAQABAIAAAAAAAP///yH5BAEAAAAALAAAAAABAAEAAAIBRAA7" data-lazy-src="https://cdn.jsdelivr.net/gh/SunriseBlossom-sketch/ck/wen/202506242025543.png" alt=""></p>
+<p>之后点击全部接受，然后在输入虚拟机的账号和密码</p>
+<h4 id="2-无法连接虚拟机的排查思路"><a href="#2-无法连接虚拟机的排查思路" class="headerlink" title="2.无法连接虚拟机的排查思路"></a>2.无法连接虚拟机的排查思路</h4><p><img src= "data:image/gif;base64,R0lGODlhAQABAIAAAAAAAP///yH5BAEAAAAALAAAAAABAAEAAAIBRAA7" data-lazy-src="https://cdn.jsdelivr.net/gh/SunriseBlossom-sketch/ck/wen/202506242028424.png" alt=""></p>
+<p><img src= "data:image/gif;base64,R0lGODlhAQABAIAAAAAAAP///yH5BAEAAAAALAAAAAABAAEAAAIBRAA7" data-lazy-src="https://cdn.jsdelivr.net/gh/SunriseBlossom-sketch/ck/wen/202506242029189.png" alt=""></p>
+<p>（1）检查本地连接中的vmnet8的IP地址是否在相同的网段</p>
+<p>（2）检查IP地址是否正确</p>
+<p>10.0.0.200/24 </p>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><span class="line"> 出现的问题:输入ip a 查看IP地址配置</span><br><span class="line"> 1.如果是192.168开头的说明安装虚拟机的过程中配置错误</span><br><span class="line"> 2.如果IP地址是空的啥都不显示，说明网络管理被NetworkManager接手了Linux系统管理网络服务:</span><br><span class="line"> 1)network 默认使用这个服务配置了10.0.0.200</span><br><span class="line"> 2)NetworkManager 默认是空的地址必须关闭一个服务: 关闭NetworkManager</span><br><span class="line"> systemctl stop NetworkManager</span><br><span class="line"> systemctl disable NetworkManager</span><br></pre></td></tr></table></figure>
+<p>（3）检查虚拟交换机配置</p>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">编辑-&gt;虚拟网络编辑器-&gt;更改设置-&gt;选择vmnet8配置子网为10.0.0.0  255.255.255.0</span><br><span class="line">在点击NAT设置网关地址为10.0.0.2</span><br></pre></td></tr></table></figure>
+<h4 id="3-无法连接外网排错思路"><a href="#3-无法连接外网排错思路" class="headerlink" title="3.无法连接外网排错思路"></a>3.无法连接外网排错思路</h4><figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line">1.ping www.baidu.com   # ping命令在linux系统会持续不断的ping 停不下来 使用ctrl+c 强制结束</span><br><span class="line">[root@oldboyedu ~]# ping www.baidu.com</span><br><span class="line">PING www.a.shifen.com (110.242.68.4) 56(84) bytes of data.</span><br><span class="line">64 bytes from 110.242.68.4 (110.242.68.4): icmp_seq=1 ttl=128 time=21.1 ms		# 可以ping通</span><br><span class="line">64 bytes from 110.242.68.4 (110.242.68.4): icmp_seq=2 ttl=128 time=17.0 ms</span><br></pre></td></tr></table></figure>
+<p><img src= "data:image/gif;base64,R0lGODlhAQABAIAAAAAAAP///yH5BAEAAAAALAAAAAABAAEAAAIBRAA7" data-lazy-src="https://cdn.jsdelivr.net/gh/SunriseBlossom-sketch/ck/wen/202506242033306.png" alt=""></p>
+<h4 id="4-优化xshell"><a href="#4-优化xshell" class="headerlink" title="4.优化xshell"></a>4.优化xshell</h4><p><img src= "data:image/gif;base64,R0lGODlhAQABAIAAAAAAAP///yH5BAEAAAAALAAAAAABAAEAAAIBRAA7" data-lazy-src="https://cdn.jsdelivr.net/gh/SunriseBlossom-sketch/ck/wen/202506242039239.png" alt=""></p>
+<p><img src= "data:image/gif;base64,R0lGODlhAQABAIAAAAAAAP///yH5BAEAAAAALAAAAAABAAEAAAIBRAA7" data-lazy-src="https://cdn.jsdelivr.net/gh/SunriseBlossom-sketch/ck/wen/202506242040898.png" alt=""></p>
+<p><img src= "data:image/gif;base64,R0lGODlhAQABAIAAAAAAAP///yH5BAEAAAAALAAAAAABAAEAAAIBRAA7" data-lazy-src="https://cdn.jsdelivr.net/gh/SunriseBlossom-sketch/ck/wen/202506242043518.png" alt=""></p>
+<h4 id="总结"><a href="#总结" class="headerlink" title="总结"></a>总结</h4><p>1.需要检查虚拟机的IP地址配置是否正确</p>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br></pre></td><td class="code"><pre><span class="line">[root@oldboyedu ~]# ip ad</span><br><span class="line">1: lo: &lt;LOOPBACK,UP,LOWER_UP&gt; mtu 65536 qdisc noqueue state UNKNOWN group default qlen 1000</span><br><span class="line">    link/loopback 00:00:00:00:00:00 brd 00:00:00:00:00:00</span><br><span class="line">    inet 127.0.0.1/8 scope host lo</span><br><span class="line">       valid_lft forever preferred_lft forever</span><br><span class="line">    inet6 ::1/128 scope host </span><br><span class="line">       valid_lft forever preferred_lft forever</span><br><span class="line">2: eth0: &lt;BROADCAST,MULTICAST,UP,LOWER_UP&gt; mtu 1500 qdisc pfifo_fast state UP group default qlen 1000</span><br><span class="line">    link/ether 00:0c:29:1f:4d:be brd ff:ff:ff:ff:ff:ff</span><br><span class="line">    inet 10.0.0.200/24 brd 10.0.0.255 scope global noprefixroute eth0</span><br><span class="line">       valid_lft forever preferred_lft forever</span><br><span class="line">    inet6 fe80::f66f:763a:981f:5cea/64 scope link noprefixroute </span><br><span class="line">       valid_lft forever preferred_lft forever</span><br></pre></td></tr></table></figure>
+<p>2.检查虚拟机的网关配置是否正确 10.0.0.2</p>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">[root@oldboyedu ~]# ip route</span><br><span class="line">default via 10.0.0.2 dev eth0 proto static metric 100 </span><br><span class="line">10.0.0.0/24 dev eth0 proto kernel scope link src 10.0.0.200 metric 100 </span><br></pre></td></tr></table></figure>
+<p>3.需要检查虚拟机虚拟交换机网段 10.0.0.0 255.255.255.0</p>
+<p>4.检查网关配置是否正确</p>
+<p>编辑—&gt;虚拟网络编辑器—&gt;更改设置—&gt;NAT—&gt;网关: 10.0.0.2</p>
+<p><img src= "data:image/gif;base64,R0lGODlhAQABAIAAAAAAAP///yH5BAEAAAAALAAAAAABAAEAAAIBRAA7" data-lazy-src="https://cdn.jsdelivr.net/gh/SunriseBlossom-sketch/ck/wen/202506242035190.png" alt=""></p>
+<p>5.检查DNS配置是否正确</p>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br></pre></td><td class="code"><pre><span class="line">ping 外网IP地址</span><br><span class="line">ping 223.5.5.5</span><br><span class="line">ping 8.8.8.8</span><br><span class="line">ping 114.114.114.114</span><br><span class="line"></span><br><span class="line">[root@oldboyedu ~]# cat /etc/resolv.conf </span><br><span class="line"># Generated by NetworkManager</span><br><span class="line">nameserver 223.5.5.5</span><br></pre></td></tr></table></figure>
+</article><div class="post-copyright"><div class="post-copyright__author"><span class="post-copyright-meta"><i class="fas fa-circle-user fa-fw"></i>文章作者: </span><span class="post-copyright-info"><a href="https://aquamind.dpdns.org">风雨</a></span></div><div class="post-copyright__type"><span class="post-copyright-meta"><i class="fas fa-square-arrow-up-right fa-fw"></i>文章链接: </span><span class="post-copyright-info"><a href="https://aquamind.dpdns.org/2025/06/24/xshell%E9%93%BE%E6%8E%A5/">https://aquamind.dpdns.org/2025/06/24/xshell%E9%93%BE%E6%8E%A5/</a></span></div><div class="post-copyright__notice"><span class="post-copyright-meta"><i class="fas fa-circle-exclamation fa-fw"></i>版权声明: </span><span class="post-copyright-info">本博客所有文章除特别声明外，均采用 <a href="https://creativecommons.org/licenses/by-nc-sa/4.0/" target="_blank">CC BY-NC-SA 4.0</a> 许可协议。转载请注明来源 <a href="https://aquamind.dpdns.org" target="_blank">风雨の小窝</a>！</span></div></div><div class="tag_share"><div class="post-meta__tag-list"><a class="post-meta__tags" href="/tags/%E8%BF%90%E7%BB%B4/">运维</a></div><div class="post-share"><div class="social-share" data-image="https://tc.alcy.cc/i/2025/07/29/6887a911ecbfd.webp" data-sites="facebook,twitter,wechat,weibo,qq"></div><link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/butterfly-extsrc/sharejs/dist/css/share.min.css" media="print" onload="this.media='all'"><script src="https://cdn.jsdelivr.net/npm/butterfly-extsrc/sharejs/dist/js/social-share.min.js" defer></script></div></div><nav class="pagination-post" id="pagination"><a class="pagination-related  no-desc" href="/2025/06/23/Linux%E6%93%8D%E4%BD%9C%E7%B3%BB%E7%BB%9F%E5%AE%89%E8%A3%85%E6%AD%A5%E9%AA%A4/" title="Linux操作系统安装步骤"><img class="cover" src= "data:image/gif;base64,R0lGODlhAQABAIAAAAAAAP///yH5BAEAAAAALAAAAAABAAEAAAIBRAA7" data-lazy-src="https://tc.alcy.cc/i/2025/07/29/6887a93ebd501.webp" onerror="onerror=null;src='/img/404.jpg'" alt="cover of previous post"><div class="info"><div class="info-1"><div class="info-item-1">上一篇</div><div class="info-item-2">Linux操作系统安装步骤</div></div></div></a><a class="pagination-related  no-desc" href="/2025/07/03/%E4%B8%AD%E5%B7%9E%E5%85%BB%E8%80%81%E7%B3%BB%E7%BB%9F%E7%9A%84%E9%83%A8%E7%BD%B2/" title="中州养老系统的部署"><img class="cover" src= "data:image/gif;base64,R0lGODlhAQABAIAAAAAAAP///yH5BAEAAAAALAAAAAABAAEAAAIBRAA7" data-lazy-src="https://tc.alcy.cc/i/2025/07/29/6887a9ed50b0a.webp" onerror="onerror=null;src='/img/404.jpg'" alt="cover of next post"><div class="info text-right"><div class="info-1"><div class="info-item-1">下一篇</div><div class="info-item-2">中州养老系统的部署</div></div></div></a></nav><div class="relatedPosts"><div class="headline"><i class="fas fa-thumbs-up fa-fw"></i><span>相关推荐</span></div><div class="relatedPosts-list"><a class="pagination-related no-desc" href="/2025/04/17/Linux%E5%9F%BA%E7%A1%80%E5%91%BD%E4%BB%A4/" title="Linux基础命令"><img class="cover" src= "data:image/gif;base64,R0lGODlhAQABAIAAAAAAAP///yH5BAEAAAAALAAAAAABAAEAAAIBRAA7" data-lazy-src="https://tc.alcy.cc/i/2025/07/29/6887a9198d5d3.webp" alt="cover"><div class="info text-center"><div class="info-1"><div class="info-item-1"><i class="far fa-calendar-alt fa-fw"></i> 2025-04-17</div><div class="info-item-2">Linux基础命令</div></div></div></a><a class="pagination-related no-desc" href="/2025/06/23/Linux%E6%93%8D%E4%BD%9C%E7%B3%BB%E7%BB%9F%E5%AE%89%E8%A3%85%E6%AD%A5%E9%AA%A4/" title="Linux操作系统安装步骤"><img class="cover" src= "data:image/gif;base64,R0lGODlhAQABAIAAAAAAAP///yH5BAEAAAAALAAAAAABAAEAAAIBRAA7" data-lazy-src="https://tc.alcy.cc/i/2025/07/29/6887a93ebd501.webp" alt="cover"><div class="info text-center"><div class="info-1"><div class="info-item-1"><i class="far fa-calendar-alt fa-fw"></i> 2025-06-23</div><div class="info-item-2">Linux操作系统安装步骤</div></div></div></a><a class="pagination-related no-desc" href="/2025/04/17/mysql%E7%9A%84%E5%9F%BA%E7%A1%80%E5%91%BD%E4%BB%A4/" title="mysql的基础命令"><img class="cover" src= "data:image/gif;base64,R0lGODlhAQABAIAAAAAAAP///yH5BAEAAAAALAAAAAABAAEAAAIBRAA7" data-lazy-src="https://tc.alcy.cc/i/2025/07/29/6887a91517c1b.webp" alt="cover"><div class="info text-center"><div class="info-1"><div class="info-item-1"><i class="far fa-calendar-alt fa-fw"></i> 2025-04-17</div><div class="info-item-2">mysql的基础命令</div></div></div></a><a class="pagination-related no-desc" href="/2025/04/13/%E6%B5%8B%E8%AF%95%E6%96%87%E7%AB%A0/" title="测试文章"><img class="cover" src= "data:image/gif;base64,R0lGODlhAQABAIAAAAAAAP///yH5BAEAAAAALAAAAAABAAEAAAIBRAA7" data-lazy-src="https://pic1.imgdb.cn/item/67fb9f4d88c538a9b5cdd64a.jpg" alt="cover"><div class="info text-center"><div class="info-1"><div class="info-item-1"><i class="far fa-calendar-alt fa-fw"></i> 2025-04-13</div><div class="info-item-2">测试文章</div></div></div></a><a class="pagination-related no-desc" href="/2025/04/14/%E7%AC%AC%E4%B8%89%E7%AF%87%E6%96%87%E7%AB%A0/" title="第三篇文章"><img class="cover" src= "data:image/gif;base64,R0lGODlhAQABAIAAAAAAAP///yH5BAEAAAAALAAAAAABAAEAAAIBRAA7" data-lazy-src="https://pic1.imgdb.cn/item/67fb9f4288c538a9b5cdd620.jpg" alt="cover"><div class="info text-center"><div class="info-1"><div class="info-item-1"><i class="far fa-calendar-alt fa-fw"></i> 2025-04-14</div><div class="info-item-2">第三篇文章</div></div></div></a></div></div></div><div class="aside-content" id="aside-content"><div class="card-widget card-info text-center"><div class="avatar-img"><img src= "data:image/gif;base64,R0lGODlhAQABAIAAAAAAAP///yH5BAEAAAAALAAAAAABAAEAAAIBRAA7" data-lazy-src="https://pic1.imgdb.cn/item/67fb9dc888c538a9b5cdcfff.jpg" onerror="this.onerror=null;this.src='/img/friend_404.gif'" alt="avatar"/></div><div class="author-info-name">风雨</div><div class="author-info-description">Future is now</div><div class="site-data"><a href="/archives/"><div class="headline">文章</div><div class="length-num">8</div></a><a href="/tags/"><div class="headline">标签</div><div class="length-num">2</div></a><a href="/categories/"><div class="headline">分类</div><div class="length-num">2</div></a></div><a id="card-info-btn" target="_blank" rel="noopener" href="https://github.com/goodtyu"><i class="fab fa-github"></i><span>Follow Me</span></a><div class="card-info-social-icons"><a class="social-icon" href="https://github.com/goodtyu" target="_blank" title="Github"><i class="fab fa-github" style="color: #24292e;"></i></a></div></div><div class="card-widget card-announcement"><div class="item-headline"><i class="fas fa-bullhorn fa-shake"></i><span>公告栏</span></div><div class="announcement_content">欢迎来到我的博客</div></div><div class="sticky_layout"><div class="card-widget" id="card-toc"><div class="item-headline"><i class="fas fa-stream"></i><span>目录</span><span class="toc-percentage"></span></div><div class="toc-content"><ol class="toc"><li class="toc-item toc-level-3"><a class="toc-link" href="#xshell%E9%93%BE%E6%8E%A5"><span class="toc-text">xshell链接</span></a><ol class="toc-child"><li class="toc-item toc-level-4"><a class="toc-link" href="#1-%E8%BF%9C%E7%A8%8B%E8%BF%9E%E6%8E%A5%E6%93%8D%E4%BD%9C%E7%B3%BB%E7%BB%9F"><span class="toc-text">1.远程连接操作系统</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#2-%E6%97%A0%E6%B3%95%E8%BF%9E%E6%8E%A5%E8%99%9A%E6%8B%9F%E6%9C%BA%E7%9A%84%E6%8E%92%E6%9F%A5%E6%80%9D%E8%B7%AF"><span class="toc-text">2.无法连接虚拟机的排查思路</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#3-%E6%97%A0%E6%B3%95%E8%BF%9E%E6%8E%A5%E5%A4%96%E7%BD%91%E6%8E%92%E9%94%99%E6%80%9D%E8%B7%AF"><span class="toc-text">3.无法连接外网排错思路</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#4-%E4%BC%98%E5%8C%96xshell"><span class="toc-text">4.优化xshell</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#%E6%80%BB%E7%BB%93"><span class="toc-text">总结</span></a></li></ol></li></ol></div></div><div class="card-widget card-recent-post"><div class="item-headline"><i class="fas fa-history"></i><span>最新文章</span></div><div class="aside-list"><div class="aside-list-item"><a class="thumbnail" href="/2025/07/03/%E4%B8%AD%E5%B7%9E%E5%85%BB%E8%80%81%E7%B3%BB%E7%BB%9F%E7%9A%84%E9%83%A8%E7%BD%B2/" title="中州养老系统的部署"><img src= "data:image/gif;base64,R0lGODlhAQABAIAAAAAAAP///yH5BAEAAAAALAAAAAABAAEAAAIBRAA7" data-lazy-src="https://tc.alcy.cc/i/2025/07/29/6887a9ed50b0a.webp" onerror="this.onerror=null;this.src='/img/404.jpg'" alt="中州养老系统的部署"/></a><div class="content"><a class="title" href="/2025/07/03/%E4%B8%AD%E5%B7%9E%E5%85%BB%E8%80%81%E7%B3%BB%E7%BB%9F%E7%9A%84%E9%83%A8%E7%BD%B2/" title="中州养老系统的部署">中州养老系统的部署</a><time datetime="2025-07-03T05:59:25.000Z" title="发表于 2025-07-03 13:59:25">2025-07-03</time></div></div><div class="aside-list-item"><a class="thumbnail" href="/2025/06/24/xshell%E9%93%BE%E6%8E%A5/" title="xshell链接"><img src= "data:image/gif;base64,R0lGODlhAQABAIAAAAAAAP///yH5BAEAAAAALAAAAAABAAEAAAIBRAA7" data-lazy-src="https://tc.alcy.cc/i/2025/07/29/6887a911ecbfd.webp" onerror="this.onerror=null;this.src='/img/404.jpg'" alt="xshell链接"/></a><div class="content"><a class="title" href="/2025/06/24/xshell%E9%93%BE%E6%8E%A5/" title="xshell链接">xshell链接</a><time datetime="2025-06-24T12:16:46.000Z" title="发表于 2025-06-24 20:16:46">2025-06-24</time></div></div><div class="aside-list-item"><a class="thumbnail" href="/2025/06/23/Linux%E6%93%8D%E4%BD%9C%E7%B3%BB%E7%BB%9F%E5%AE%89%E8%A3%85%E6%AD%A5%E9%AA%A4/" title="Linux操作系统安装步骤"><img src= "data:image/gif;base64,R0lGODlhAQABAIAAAAAAAP///yH5BAEAAAAALAAAAAABAAEAAAIBRAA7" data-lazy-src="https://tc.alcy.cc/i/2025/07/29/6887a93ebd501.webp" onerror="this.onerror=null;this.src='/img/404.jpg'" alt="Linux操作系统安装步骤"/></a><div class="content"><a class="title" href="/2025/06/23/Linux%E6%93%8D%E4%BD%9C%E7%B3%BB%E7%BB%9F%E5%AE%89%E8%A3%85%E6%AD%A5%E9%AA%A4/" title="Linux操作系统安装步骤">Linux操作系统安装步骤</a><time datetime="2025-06-23T13:17:19.000Z" title="发表于 2025-06-23 21:17:19">2025-06-23</time></div></div><div class="aside-list-item"><a class="thumbnail" href="/2025/04/17/mysql%E7%9A%84%E5%9F%BA%E7%A1%80%E5%91%BD%E4%BB%A4/" title="mysql的基础命令"><img src= "data:image/gif;base64,R0lGODlhAQABAIAAAAAAAP///yH5BAEAAAAALAAAAAABAAEAAAIBRAA7" data-lazy-src="https://tc.alcy.cc/i/2025/07/29/6887a91517c1b.webp" onerror="this.onerror=null;this.src='/img/404.jpg'" alt="mysql的基础命令"/></a><div class="content"><a class="title" href="/2025/04/17/mysql%E7%9A%84%E5%9F%BA%E7%A1%80%E5%91%BD%E4%BB%A4/" title="mysql的基础命令">mysql的基础命令</a><time datetime="2025-04-17T15:29:47.000Z" title="发表于 2025-04-17 23:29:47">2025-04-17</time></div></div><div class="aside-list-item"><a class="thumbnail" href="/2025/04/17/Linux%E5%9F%BA%E7%A1%80%E5%91%BD%E4%BB%A4/" title="Linux基础命令"><img src= "data:image/gif;base64,R0lGODlhAQABAIAAAAAAAP///yH5BAEAAAAALAAAAAABAAEAAAIBRAA7" data-lazy-src="https://tc.alcy.cc/i/2025/07/29/6887a9198d5d3.webp" onerror="this.onerror=null;this.src='/img/404.jpg'" alt="Linux基础命令"/></a><div class="content"><a class="title" href="/2025/04/17/Linux%E5%9F%BA%E7%A1%80%E5%91%BD%E4%BB%A4/" title="Linux基础命令">Linux基础命令</a><time datetime="2025-04-17T07:35:22.000Z" title="发表于 2025-04-17 15:35:22">2025-04-17</time></div></div></div></div></div></div></main><footer id="footer"><div id="footer-wrap"><div class="copyright">&copy;2025 By 风雨</div></div></footer></div><div id="rightside"><div id="rightside-config-hide"><button id="readmode" type="button" title="阅读模式"><i class="fas fa-book-open"></i></button><button id="darkmode" type="button" title="日间和夜间模式切换"><i class="fas fa-adjust"></i></button><button id="hide-aside-btn" type="button" title="单栏和双栏切换"><i class="fas fa-arrows-alt-h"></i></button></div><div id="rightside-config-show"><button id="rightside-config" type="button" title="设置"><i class="fas fa-cog fa-spin"></i></button><button class="close" id="mobile-toc-button" type="button" title="目录"><i class="fas fa-list-ul"></i></button><button id="go-up" type="button" title="回到顶部"><span class="scroll-percent"></span><i class="fas fa-arrow-up"></i></button></div></div><div><script src="/js/utils.js"></script><script src="/js/main.js"></script><script src="https://cdn.jsdelivr.net/npm/instant.page/instantpage.min.js" type="module"></script><script src="https://cdn.jsdelivr.net/npm/vanilla-lazyload/dist/lazyload.iife.min.js"></script><script src="https://cdn.jsdelivr.net/npm/node-snackbar/dist/snackbar.min.js"></script><div class="js-pjax"></div><script async src="//at.alicdn.com/t/c/font_4893430_1v1qg4wrw3l.js"></script><script src="/js/winbox.bundle.min.js"></script><script src="/js/backgroundImage.js"></script><script async data-pjax src="//busuanzi.ibruce.info/busuanzi/2.3/busuanzi.pure.mini.js"></script><div id="local-search"><div class="search-dialog"><nav class="search-nav"><span class="search-dialog-title">搜索</span><span id="loading-status"></span><button class="search-close-button"><i class="fas fa-times"></i></button></nav><div class="text-center" id="loading-database"><i class="fas fa-spinner fa-pulse"></i><span>  数据加载中</span></div><div class="search-wrap"><div id="local-search-input"><div class="local-search-box"><input class="local-search-box--input" placeholder="搜索文章" type="text"/></div></div><hr/><div id="local-search-results"></div><div id="local-search-stats-wrap"></div></div></div><div id="search-mask"></div><script src="/js/search/local-search.js"></script></div></div><!-- hexo injector body_end start --> <script data-pjax>if(document.getElementById('recent-posts') && (location.pathname ==='/'|| '/' ==='all')){
+    var parent = document.getElementById('recent-posts');
+    var child = '<div class="recent-post-item" style="width:100%;height: auto"><div id="catalog_magnet"><div class="magnet_item"><a class="magnet_link" href="https://aquamind.dpdns.org/categories/运维/"><div class="magnet_link_context" style=""><span style="font-weight:500;flex:1">📚 运维知识 (7)</span><span style="padding:0px 4px;border-radius: 8px;"><i class="fas fa-arrow-circle-right"></i></span></div></a></div><div class="magnet_item"><a class="magnet_link" href="https://aquamind.dpdns.org/categories/项目/"><div class="magnet_link_context" style=""><span style="font-weight:500;flex:1">👩‍💻 学的的项目 (1)</span><span style="padding:0px 4px;border-radius: 8px;"><i class="fas fa-arrow-circle-right"></i></span></div></a></div><a class="magnet_link_more"  href="https://aquamind.dpdns.org/categories" style="flex:1;text-align: center;margin-bottom: 10px;">查看更多...</a></div></div>';
+    console.log('已挂载magnet')
+    parent.insertAdjacentHTML("afterbegin",child)}
+     </script><style>#catalog_magnet{flex-wrap: wrap;display: flex;width:100%;justify-content:space-between;padding: 10px 10px 0 10px;align-content: flex-start;}.magnet_item{flex-basis: calc(50% - 5px);background: #f2f2f2;margin-bottom: 10px;border-radius: 8px;transition: all 0.2s ease-in-out;}.magnet_item:hover{background: #69e8f2}.magnet_link_more{color:#555}.magnet_link{color:black}.magnet_link:hover{color:white}@media screen and (max-width: 600px) {.magnet_item {flex-basis: 100%;}}.magnet_link_context{display:flex;padding: 10px;font-size:16px;transition: all 0.2s ease-in-out;}.magnet_link_context:hover{padding: 10px 20px;}</style>
+    <style></style><script data-pjax>
+  function butterfly_footer_beautify_injector_config(){
+    var parent_div_git = document.getElementById('footer-wrap');
+    var item_html = '<div id="workboard"></div><p id="ghbdages"><a class="github-badge" target="_blank" href="https://hexo.io/" style="margin-inline:5px" data-title="博客框架为Hexo_v6.2.0" title=""><img src= "data:image/gif;base64,R0lGODlhAQABAIAAAAAAAP///yH5BAEAAAAALAAAAAABAAEAAAIBRAA7" data-lazy-src="https://img.shields.io/badge/Frame-Hexo-blue?style=flat&amp;logo=hexo" alt=""/></a><a class="github-badge" target="_blank" href="https://butterfly.js.org/" style="margin-inline:5px" data-title="主题版本Butterfly_v4.3.1" title=""><img src= "data:image/gif;base64,R0lGODlhAQABAIAAAAAAAP///yH5BAEAAAAALAAAAAABAAEAAAIBRAA7" data-lazy-src="https://img.shields.io/badge/Theme-Butterfly-6513df?style=flat&amp;logo=bitdefender" alt=""/></a><a class="github-badge" target="_blank" href="https://vercel.com/" style="margin-inline:5px" data-title="本站采用多线部署，主线路托管于Vercel" title=""><img src= "data:image/gif;base64,R0lGODlhAQABAIAAAAAAAP///yH5BAEAAAAALAAAAAABAAEAAAIBRAA7" data-lazy-src="https://img.shields.io/badge/Hosted-Vercel-brightgreen?style=flat&amp;logo=Vercel" alt=""/></a><a class="github-badge" target="_blank" href="https://dashboard.4everland.org/" style="margin-inline:5px" data-title="本站采用多线部署，备用线路托管于4EVERLAND" title=""><img src= "data:image/gif;base64,R0lGODlhAQABAIAAAAAAAP///yH5BAEAAAAALAAAAAABAAEAAAIBRAA7" data-lazy-src="https://img.shields.io/badge/Hosted-4EVERLAND-22DDDD?style=flat&amp;logo=IPFS" alt=""/></a><a class="github-badge" target="_blank" href="https://github.com/" style="margin-inline:5px" data-title="本站项目由Github托管" title=""><img src= "data:image/gif;base64,R0lGODlhAQABAIAAAAAAAP///yH5BAEAAAAALAAAAAABAAEAAAIBRAA7" data-lazy-src="https://img.shields.io/badge/Source-Github-d021d6?style=flat&amp;logo=GitHub" alt=""/></a><a class="github-badge" target="_blank" href="http://creativecommons.org/licenses/by-nc-sa/4.0/" style="margin-inline:5px" data-title="本站采用知识共享署名-非商业性使用-相同方式共享4.0国际许可协议进行许可" title=""><img src= "data:image/gif;base64,R0lGODlhAQABAIAAAAAAAP///yH5BAEAAAAALAAAAAABAAEAAAIBRAA7" data-lazy-src="https://img.shields.io/badge/Copyright-BY--NC--SA%204.0-d42328?style=flat&amp;logo=Claris" alt=""/></a></p>';
+    console.log('已挂载butterfly_footer_beautify')
+    parent_div_git.insertAdjacentHTML("beforeend",item_html)
+    }
+  var elist = 'null'.split(',');
+  var cpage = location.pathname;
+  var epage = 'all';
+  var flag = 0;
+
+  for (var i=0;i<elist.length;i++){
+    if (cpage.includes(elist[i])){
+      flag++;
+    }
+  }
+
+  if ((epage ==='all')&&(flag == 0)){
+    butterfly_footer_beautify_injector_config();
+  }
+  else if (epage === cpage){
+    butterfly_footer_beautify_injector_config();
+  }
+  </script><script async src="/js/runtime.js"></script><script data-pjax>
+  function butterfly_swiper_injector_config(){
+    var parent_div_git = document.getElementById('recent-posts');
+    var item_html = '<div class="recent-post-item" style="height: auto;width: 100%"><div class="blog-slider swiper-container-fade swiper-container-horizontal" id="swiper_container"><div class="blog-slider__wrp swiper-wrapper" style="transition-duration: 0ms;"><div class="blog-slider__item swiper-slide" style="width: 750px; opacity: 1; transform: translate3d(0px, 0px, 0px); transition-duration: 0ms;"><a class="blog-slider__img" href="2025/04/17/mysql的基础命令/" alt=""><img width="48" height="48" src= "data:image/gif;base64,R0lGODlhAQABAIAAAAAAAP///yH5BAEAAAAALAAAAAABAAEAAAIBRAA7" data-lazy-src="https://tc.alcy.cc/i/2025/07/29/6887a91517c1b.webp" alt="" onerror="this.src=https://unpkg.zhimg.com/akilar-candyassets/image/loading.gif; this.onerror = null;"/></a><div class="blog-slider__content"><span class="blog-slider__code">2025-04-17</span><a class="blog-slider__title" href="2025/04/17/mysql的基础命令/" alt="">mysql的基础命令</a><div class="blog-slider__text">mysql的基础命令</div><a class="blog-slider__button" href="2025/04/17/mysql的基础命令/" alt="">详情   </a></div></div><div class="blog-slider__item swiper-slide" style="width: 750px; opacity: 1; transform: translate3d(0px, 0px, 0px); transition-duration: 0ms;"><a class="blog-slider__img" href="2025/07/03/中州养老系统的部署/" alt=""><img width="48" height="48" src= "data:image/gif;base64,R0lGODlhAQABAIAAAAAAAP///yH5BAEAAAAALAAAAAABAAEAAAIBRAA7" data-lazy-src="https://tc.alcy.cc/i/2025/07/29/6887a9ed50b0a.webp" alt="" onerror="this.src=https://unpkg.zhimg.com/akilar-candyassets/image/loading.gif; this.onerror = null;"/></a><div class="blog-slider__content"><span class="blog-slider__code">2025-07-03</span><a class="blog-slider__title" href="2025/07/03/中州养老系统的部署/" alt="">中州养老系统的部署</a><div class="blog-slider__text">中州养老系统的部署</div><a class="blog-slider__button" href="2025/07/03/中州养老系统的部署/" alt="">详情   </a></div></div><div class="blog-slider__item swiper-slide" style="width: 750px; opacity: 1; transform: translate3d(0px, 0px, 0px); transition-duration: 0ms;"><a class="blog-slider__img" href="2025/06/24/xshell链接/" alt=""><img width="48" height="48" src= "data:image/gif;base64,R0lGODlhAQABAIAAAAAAAP///yH5BAEAAAAALAAAAAABAAEAAAIBRAA7" data-lazy-src="https://tc.alcy.cc/i/2025/07/29/6887a911ecbfd.webp" alt="" onerror="this.src=https://unpkg.zhimg.com/akilar-candyassets/image/loading.gif; this.onerror = null;"/></a><div class="blog-slider__content"><span class="blog-slider__code">2025-06-24</span><a class="blog-slider__title" href="2025/06/24/xshell链接/" alt="">xshell链接</a><div class="blog-slider__text">远程链接和排除错误</div><a class="blog-slider__button" href="2025/06/24/xshell链接/" alt="">详情   </a></div></div><div class="blog-slider__item swiper-slide" style="width: 750px; opacity: 1; transform: translate3d(0px, 0px, 0px); transition-duration: 0ms;"><a class="blog-slider__img" href="2025/04/17/Linux基础命令/" alt=""><img width="48" height="48" src= "data:image/gif;base64,R0lGODlhAQABAIAAAAAAAP///yH5BAEAAAAALAAAAAABAAEAAAIBRAA7" data-lazy-src="https://tc.alcy.cc/i/2025/07/29/6887a9198d5d3.webp" alt="" onerror="this.src=https://unpkg.zhimg.com/akilar-candyassets/image/loading.gif; this.onerror = null;"/></a><div class="blog-slider__content"><span class="blog-slider__code">2025-04-17</span><a class="blog-slider__title" href="2025/04/17/Linux基础命令/" alt="">Linux基础命令</a><div class="blog-slider__text">linux基础的命令</div><a class="blog-slider__button" href="2025/04/17/Linux基础命令/" alt="">详情   </a></div></div></div><div class="blog-slider__pagination swiper-pagination-clickable swiper-pagination-bullets"></div></div></div>';
+    console.log('已挂载butterfly_swiper')
+    parent_div_git.insertAdjacentHTML("afterbegin",item_html)
+    }
+  var elist = 'undefined'.split(',');
+  var cpage = location.pathname;
+  var epage = '/';
+  var flag = 0;
+
+  for (var i=0;i<elist.length;i++){
+    if (cpage.includes(elist[i])){
+      flag++;
+    }
+  }
+
+  if ((epage ==='all')&&(flag == 0)){
+    butterfly_swiper_injector_config();
+  }
+  else if (epage === cpage){
+    butterfly_swiper_injector_config();
+  }
+  </script><script defer src="https://npm.elemecdn.com/hexo-butterfly-swiper/lib/swiper.min.js"></script><script defer data-pjax src="https://npm.elemecdn.com/hexo-butterfly-swiper/lib/swiper_init.js"></script><script async src="//at.alicdn.com/t/font_2032782_8d5kxvn09md.js"></script><!-- hexo injector body_end end --></body></html>
