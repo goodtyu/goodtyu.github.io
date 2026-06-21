@@ -1,0 +1,356 @@
+<!DOCTYPE html><html lang="zh-CN" data-theme="light"><head><meta charset="UTF-8"><meta http-equiv="X-UA-Compatible" content="IE=edge"><meta name="viewport" content="width=device-width, initial-scale=1.0,viewport-fit=cover"><title>华为970进行内核编辑和支持Droidspaces | 风雨の小窝</title><meta name="author" content="风雨"><meta name="copyright" content="风雨"><meta name="format-detection" content="telephone=no"><meta name="theme-color" content="ffffff"><meta name="description" content="华为麒麟970内核编辑集成ReSukiSU+Droidspaces完整教程一、前置环境与工具说明1.1 编译运行环境内核编辑与编译必须在Linux环境下进行（推荐原生Ubuntu&#x2F;Debian、WSL2），不推荐Windows、macOS直接编译麒麟970老内核，极易出现编译报错、适配异常问题。 1.2 AI编译辅助工具配置本教程采用AI辅助编译，适配Codex、Claude工具，搭配zcf配置工">
+<meta property="og:type" content="article">
+<meta property="og:title" content="华为970进行内核编辑和支持Droidspaces">
+<meta property="og:url" content="https://aquamind.dpdns.org/2026/06/20/%E5%8D%8E%E4%B8%BA970%E8%BF%9B%E8%A1%8C%E5%86%85%E6%A0%B8%E7%BC%96%E8%BE%91%E5%92%8C%E6%94%AF%E6%8C%81Droidspaces/index.html">
+<meta property="og:site_name" content="风雨の小窝">
+<meta property="og:description" content="华为麒麟970内核编辑集成ReSukiSU+Droidspaces完整教程一、前置环境与工具说明1.1 编译运行环境内核编辑与编译必须在Linux环境下进行（推荐原生Ubuntu&#x2F;Debian、WSL2），不推荐Windows、macOS直接编译麒麟970老内核，极易出现编译报错、适配异常问题。 1.2 AI编译辅助工具配置本教程采用AI辅助编译，适配Codex、Claude工具，搭配zcf配置工">
+<meta property="og:locale" content="zh_CN">
+<meta property="og:image" content="https://tc.alcy.cc/tc/20260121/1dff5cedde6b59bf0ce8d3099d47231e.webp">
+<meta property="article:published_time" content="2026-06-20T14:07:45.000Z">
+<meta property="article:modified_time" content="2026-06-21T03:20:54.981Z">
+<meta property="article:author" content="风雨">
+<meta property="article:tag" content="风雨, hexo, blog">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:image" content="https://tc.alcy.cc/tc/20260121/1dff5cedde6b59bf0ce8d3099d47231e.webp"><script type="application/ld+json">{
+  "@context": "https://schema.org",
+  "@type": "BlogPosting",
+  "headline": "华为970进行内核编辑和支持Droidspaces",
+  "url": "https://aquamind.dpdns.org/2026/06/20/%E5%8D%8E%E4%B8%BA970%E8%BF%9B%E8%A1%8C%E5%86%85%E6%A0%B8%E7%BC%96%E8%BE%91%E5%92%8C%E6%94%AF%E6%8C%81Droidspaces/",
+  "image": "https://tc.alcy.cc/tc/20260121/1dff5cedde6b59bf0ce8d3099d47231e.webp",
+  "datePublished": "2026-06-20T14:07:45.000Z",
+  "dateModified": "2026-06-21T03:20:54.981Z",
+  "author": [
+    {
+      "@type": "Person",
+      "name": "风雨",
+      "url": "https://aquamind.dpdns.org/"
+    }
+  ]
+}</script><link rel="shortcut icon" href="https://pic1.imgdb.cn/item/67fb9d2288c538a9b5cdcd3f.jpg"><link rel="canonical" href="https://aquamind.dpdns.org/2026/06/20/%E5%8D%8E%E4%B8%BA970%E8%BF%9B%E8%A1%8C%E5%86%85%E6%A0%B8%E7%BC%96%E8%BE%91%E5%92%8C%E6%94%AF%E6%8C%81Droidspaces/index.html"><link rel="preconnect" href="//cdn.jsdelivr.net"/><link rel="preconnect" href="//busuanzi.ibruce.info"/><link rel="stylesheet" href="/css/index.css"><link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/@fortawesome/fontawesome-free/css/all.min.css"><link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/node-snackbar/dist/snackbar.min.css" media="print" onload="this.media='all'"><script>
+    (() => {
+      
+    const saveToLocal = {
+      set: (key, value, ttl) => {
+        if (!ttl) return
+        const expiry = Date.now() + ttl * 86400000
+        localStorage.setItem(key, JSON.stringify({ value, expiry }))
+      },
+      get: key => {
+        const itemStr = localStorage.getItem(key)
+        if (!itemStr) return undefined
+        const { value, expiry } = JSON.parse(itemStr)
+        if (Date.now() > expiry) {
+          localStorage.removeItem(key)
+          return undefined
+        }
+        return value
+      }
+    }
+
+    window.btf = {
+      saveToLocal,
+      getScript: (url, attr = {}) => new Promise((resolve, reject) => {
+        const script = document.createElement('script')
+        script.src = url
+        script.async = true
+        Object.entries(attr).forEach(([key, val]) => script.setAttribute(key, val))
+        script.onload = script.onreadystatechange = () => {
+          if (!script.readyState || /loaded|complete/.test(script.readyState)) resolve()
+        }
+        script.onerror = reject
+        document.head.appendChild(script)
+      }),
+      getCSS: (url, id) => new Promise((resolve, reject) => {
+        const link = document.createElement('link')
+        link.rel = 'stylesheet'
+        link.href = url
+        if (id) link.id = id
+        link.onload = link.onreadystatechange = () => {
+          if (!link.readyState || /loaded|complete/.test(link.readyState)) resolve()
+        }
+        link.onerror = reject
+        document.head.appendChild(link)
+      }),
+      addGlobalFn: (key, fn, name = false, parent = window) => {
+        if (!false && key.startsWith('pjax')) return
+        const globalFn = parent.globalFn || {}
+        globalFn[key] = globalFn[key] || {}
+        globalFn[key][name || Object.keys(globalFn[key]).length] = fn
+        parent.globalFn = globalFn
+      }
+    }
+  
+      
+      const activateDarkMode = () => {
+        document.documentElement.setAttribute('data-theme', 'dark')
+        if (document.querySelector('meta[name="theme-color"]') !== null) {
+          document.querySelector('meta[name="theme-color"]').setAttribute('content', '#0d0d0d')
+        }
+      }
+      const activateLightMode = () => {
+        document.documentElement.setAttribute('data-theme', 'light')
+        if (document.querySelector('meta[name="theme-color"]') !== null) {
+          document.querySelector('meta[name="theme-color"]').setAttribute('content', 'ffffff')
+        }
+      }
+
+      btf.activateDarkMode = activateDarkMode
+      btf.activateLightMode = activateLightMode
+
+      const theme = saveToLocal.get('theme')
+    
+          theme === 'dark' ? activateDarkMode() : theme === 'light' ? activateLightMode() : null
+        
+      
+      const asideStatus = saveToLocal.get('aside-status')
+      if (asideStatus !== undefined) {
+        document.documentElement.classList.toggle('hide-aside', asideStatus === 'hide')
+      }
+    
+      
+    const detectApple = () => {
+      if (/iPad|iPhone|iPod|Macintosh/.test(navigator.userAgent)) {
+        document.documentElement.classList.add('apple')
+      }
+    }
+    detectApple()
+  
+    })()
+  </script><script>const GLOBAL_CONFIG = {
+  root: '/',
+  algolia: undefined,
+  localSearch: {"path":"/search.xml","preload":false,"top_n_per_article":1,"unescape":false,"languages":{"hits_empty":"未找到符合您查询的内容：${query}","hits_stats":"共找到 ${hits} 篇文章"}},
+  translate: undefined,
+  highlight: {"plugin":"highlight.js","highlightCopy":true,"highlightLang":true,"highlightHeightLimit":230,"highlightFullpage":false,"highlightMacStyle":true},
+  copy: {
+    success: '复制成功',
+    error: '复制失败',
+    noSupport: '浏览器不支持'
+  },
+  relativeDate: {
+    homepage: false,
+    post: false
+  },
+  runtime: '',
+  dateSuffix: {
+    just: '刚刚',
+    min: '分钟前',
+    hour: '小时前',
+    day: '天前',
+    month: '个月前'
+  },
+  copyright: undefined,
+  lightbox: 'null',
+  Snackbar: {"chs_to_cht":"已切换为繁体中文","cht_to_chs":"已切换为简体中文","day_to_night":"已切换为深色模式","night_to_day":"已切换为浅色模式","bgLight":"#49b1f5","bgDark":"#1f1f1f","position":"bottom-right"},
+  infinitegrid: {
+    js: 'https://cdn.jsdelivr.net/npm/@egjs/infinitegrid/dist/infinitegrid.min.js',
+    buttonText: '加载更多'
+  },
+  isPhotoFigcaption: false,
+  islazyloadPlugin: true,
+  isAnchor: false,
+  percent: {
+    toc: true,
+    rightside: true,
+  },
+  autoDarkmode: false
+}</script><script id="config-diff">var GLOBAL_CONFIG_SITE = {
+  title: '华为970进行内核编辑和支持Droidspaces',
+  isHighlightShrink: false,
+  isToc: true,
+  pageType: 'post'
+}</script><link rel="stylesheet" href="/css/custom.css" media="defer" onload="this.media='all'"><!-- hexo injector head_end start --><link rel="stylesheet" href="/css/runtime.min.css" media="print" onload="this.media='all'"><link rel="stylesheet" href="https://npm.elemecdn.com/hexo-butterfly-swiper/lib/swiper.min.css" media="print" onload="this.media='all'"><link rel="stylesheet" href="https://npm.elemecdn.com/hexo-butterfly-swiper/lib/swiperstyle.css" media="print" onload="this.media='all'"><link rel="stylesheet" href="https://npm.elemecdn.com/hexo-butterfly-tag-plugins-plus@latest/lib/assets/font-awesome-animation.min.css" media="defer" onload="this.media='all'"><link rel="stylesheet" href="https://npm.elemecdn.com/hexo-butterfly-tag-plugins-plus@latest/lib/tag_plugins.css" media="defer" onload="this.media='all'"><script src="https://npm.elemecdn.com/hexo-butterfly-tag-plugins-plus@latest/lib/assets/carousel-touch.js"></script><!-- hexo injector head_end end --><meta name="generator" content="Hexo 7.3.0"><link rel="stylesheet" href="/css/prism.css" type="text/css"></head><body><div id="loading-box" onclick="document.getElementById(&quot;loading-box&quot;).classList.add(&quot;loaded&quot;)"><div class="loading-bg"><div class="loading-img"></div><div class="loading-image-dot"></div></div></div><script>const preloader = {
+  endLoading: () => {
+    document.body.style.overflow = 'auto';
+    document.getElementById('loading-box').classList.add("loaded")
+  },
+  initLoading: () => {
+    document.body.style.overflow = '';
+    document.getElementById('loading-box').classList.remove("loaded")
+
+  }
+}
+window.addEventListener('load',()=> { preloader.endLoading() })
+
+if (false) {
+  document.addEventListener('pjax:send', () => { preloader.initLoading() })
+  document.addEventListener('pjax:complete', () => { preloader.endLoading() })
+}</script><script>window.paceOptions = {
+  restartOnPushState: false
+}
+
+btf.addGlobalFn('pjaxSend', () => {
+  Pace.restart()
+}, 'pace_restart')
+
+</script><link rel="stylesheet" href="/css/progress_bar.css"/><script src="https://cdn.jsdelivr.net/npm/pace-js/pace.min.js"></script><div id="web_bg" style="background-image: url(https://pic1.imgdb.cn/item/67ffd7d488c538a9b5d490f2.jpg);"></div><div id="sidebar"><div id="menu-mask"></div><div id="sidebar-menus"><div class="avatar-img text-center"><img src= "data:image/gif;base64,R0lGODlhAQABAIAAAAAAAP///yH5BAEAAAAALAAAAAABAAEAAAIBRAA7" data-lazy-src="https://pic1.imgdb.cn/item/67fb9dc888c538a9b5cdcfff.jpg" onerror="this.onerror=null;this.src='/img/friend_404.gif'" alt="avatar"/></div><div class="site-data text-center"><a href="/archives/"><div class="headline">文章</div><div class="length-num">16</div></a><a href="/tags/"><div class="headline">标签</div><div class="length-num">2</div></a><a href="/categories/"><div class="headline">分类</div><div class="length-num">2</div></a></div><div class="menus_items"><div class="menus_item"><a class="site-page" href="/"><i class="fa-fw iconfont icon-shouye"></i><span class="menu_word" style="font-size:17px"> 首页</span></a></div><div class="menus_item"><a class="site-page group hide" href="javascript:void(0);"><i class="fa-fw iconfont icon-wenzhang"></i><span class="menu_word" style="font-size:17px"> 文章</span><i class="fas fa-chevron-down"></i></a><ul class="menus_item_child"><li><a class="site-page child" href="/tags/"><i class="fa-fw iconfont  icon-biaoqian">                   </i><span class="menu_word" style="font-size:15px"> 标签</span></a></li><li><a class="site-page child" href="/categories/"><i class="fa-fw iconfont icon-fenlei">                   </i><span class="menu_word" style="font-size:15px"> 分类</span></a></li></ul></div><div class="menus_item"><a class="site-page" href="/archives/"><i class="fa-fw iconfont icon-guidang"></i><span class="menu_word" style="font-size:17px"> 时间轴</span></a></div><div class="menus_item"><a class="site-page" href="/link/"><i class="fa-fw iconfont icon-lianjie"></i><span class="menu_word" style="font-size:17px"> 友链</span></a></div><div class="menus_item"><a class="site-page" href="/about/"><i class="fa-fw iconfont icon-zhifeiji"></i><span class="menu_word" style="font-size:17px"> 关于</span></a></div></div></div></div><div class="post" id="body-wrap"><header class="post-bg" id="page-header" style="background-image: url(https://tc.alcy.cc/tc/20260121/1dff5cedde6b59bf0ce8d3099d47231e.webp);"><nav id="nav"><span id="blog-info"><a class="nav-site-title" href="/"><span class="site-name">风雨の小窝</span></a><a class="nav-page-title" href="/"><span class="site-name">华为970进行内核编辑和支持Droidspaces</span></a></span><div id="menus"><a class="meihua faa-parent animated-hover" onclick="toggleWinbox()" title="美化设置-自定义你的风格" id="meihua-button"><svg class="faa-tada icon" style="height:26px;width:26px;fill:currentColor;position:relative;top:8px" aria-hidden="true"><use xlink:href="#icon-tupian1">         </use></svg><div id="search-button"><a class="search faa-parent animated-hover" title="检索站内任何你想要的信息"><svg class="faa-tada icon" style="height:26px;width:24px;fill:currentColor;position:relative;top:6px" aria-hidden="true"><use xlink:href="#icon-a-zaixianchazhaozaixiansousuowangluo"></use></svg></a></div></a><div class="menus_items"><div class="menus_item"><a class="site-page" href="/"><i class="fa-fw iconfont icon-shouye"></i><span class="menu_word" style="font-size:17px"> 首页</span></a></div><div class="menus_item"><a class="site-page group hide" href="javascript:void(0);"><i class="fa-fw iconfont icon-wenzhang"></i><span class="menu_word" style="font-size:17px"> 文章</span><i class="fas fa-chevron-down"></i></a><ul class="menus_item_child"><li><a class="site-page child" href="/tags/"><i class="fa-fw iconfont  icon-biaoqian">                   </i><span class="menu_word" style="font-size:15px"> 标签</span></a></li><li><a class="site-page child" href="/categories/"><i class="fa-fw iconfont icon-fenlei">                   </i><span class="menu_word" style="font-size:15px"> 分类</span></a></li></ul></div><div class="menus_item"><a class="site-page" href="/archives/"><i class="fa-fw iconfont icon-guidang"></i><span class="menu_word" style="font-size:17px"> 时间轴</span></a></div><div class="menus_item"><a class="site-page" href="/link/"><i class="fa-fw iconfont icon-lianjie"></i><span class="menu_word" style="font-size:17px"> 友链</span></a></div><div class="menus_item"><a class="site-page" href="/about/"><i class="fa-fw iconfont icon-zhifeiji"></i><span class="menu_word" style="font-size:17px"> 关于</span></a></div></div><div id="toggle-menu"><span class="site-page"><i class="fas fa-bars fa-fw"></i></span></div></div></nav><div id="post-info"><h1 class="post-title">华为970进行内核编辑和支持Droidspaces</h1><div id="post-meta"><div class="meta-firstline"><span class="post-meta-date"><i class="far fa-calendar-alt fa-fw post-meta-icon"></i><span class="post-meta-label">发表于</span><time class="post-meta-date-created" datetime="2026-06-20T14:07:45.000Z" title="发表于 2026-06-20 22:07:45">2026-06-20</time><span class="post-meta-separator">|</span><i class="fas fa-history fa-fw post-meta-icon"></i><span class="post-meta-label">更新于</span><time class="post-meta-date-updated" datetime="2026-06-21T03:20:54.981Z" title="更新于 2026-06-21 11:20:54">2026-06-21</time></span></div><div class="meta-secondline"><span class="post-meta-separator">|</span><span class="post-meta-wordcount"><i class="far fa-file-word fa-fw post-meta-icon"></i><span class="post-meta-label">总字数:</span><span class="word-count">1.4k</span><span class="post-meta-separator">|</span><i class="far fa-clock fa-fw post-meta-icon"></i><span class="post-meta-label">阅读时长:</span><span>4分钟</span></span><span class="post-meta-separator">|</span><span class="post-meta-pv-cv" id="" data-flag-title=""><i class="far fa-eye fa-fw post-meta-icon"></i><span class="post-meta-label">浏览量:</span><span id="busuanzi_value_page_pv"><i class="fa-solid fa-spinner fa-spin"></i></span></span></div></div></div></header><main class="layout" id="content-inner"><div id="post"><article class="container post-content" id="article-container"><h1 id="华为麒麟970内核编辑集成ReSukiSU-Droidspaces完整教程"><a href="#华为麒麟970内核编辑集成ReSukiSU-Droidspaces完整教程" class="headerlink" title="华为麒麟970内核编辑集成ReSukiSU+Droidspaces完整教程"></a>华为麒麟970内核编辑集成ReSukiSU+Droidspaces完整教程</h1><h2 id="一、前置环境与工具说明"><a href="#一、前置环境与工具说明" class="headerlink" title="一、前置环境与工具说明"></a>一、前置环境与工具说明</h2><h3 id="1-1-编译运行环境"><a href="#1-1-编译运行环境" class="headerlink" title="1.1 编译运行环境"></a>1.1 编译运行环境</h3><p>内核编辑与编译<strong>必须在Linux环境</strong>下进行（推荐原生Ubuntu/Debian、WSL2），不推荐Windows、macOS直接编译麒麟970老内核，极易出现编译报错、适配异常问题。</p>
+<h3 id="1-2-AI编译辅助工具配置"><a href="#1-2-AI编译辅助工具配置" class="headerlink" title="1.2 AI编译辅助工具配置"></a>1.2 AI编译辅助工具配置</h3><p>本教程采用AI辅助编译，适配Codex、Claude工具，搭配zcf配置工具，相关执行命令如下：</p>
+<ul>
+<li><p><strong>zcf配置工具安装命令</strong></p>
+</li>
+<li><p><code>npx zcf</code></p>
+</li>
+<li><p><strong>Codex编译执行命令（绕过沙箱与审批限制）</strong></p>
+</li>
+<li><p><code>codex --dangerously-bypass-approvals-and-sandbox</code></p>
+</li>
+<li><p><strong>Claude编译执行命令（绕过Root检测、跳过权限确认）</strong></p>
+</li>
+<li><p><code>IS_SANDBOX=1 claude --dangerously-skip-permissions</code></p>
+</li>
+</ul>
+<h3 id="1-3-核心参考资源"><a href="#1-3-核心参考资源" class="headerlink" title="1.3 核心参考资源"></a>1.3 核心参考资源</h3><ul>
+<li><p>麒麟970 EMUI9.1内核源码：<a target="_blank" rel="noopener" href="https://github.com/HoleHolo/kirin970-kernel-based-on-emui9.1">kirin970-kernel-based-on-emui9.1</a></p>
+</li>
+<li><p>ReSukiSU内核集成官方教程：<a target="_blank" rel="noopener" href="https://resukisu.github.io/zh-Hans/guide/build.html">如何为内核集成 ReSukiSU</a></p>
+</li>
+<li><p>EMUI9.1内核适配教程：<a target="_blank" rel="noopener" href="https://github.com/Coconutat/Huawei-GSI-And-Modify-Or-Support-KernelSU-Tutorial/wiki/7.KernelSU适配EMUI9或9.1.0系统的内核">KernelSU适配EMUI9/9.1内核指南</a></p>
+</li>
+<li><p>Droidspaces内核配置文档：<a target="_blank" rel="noopener" href="https://github.com/ravindu644/Droidspaces-OSS/blob/main/Documentation/zh-CN/Kernel-Configuration.md#non-gki">Droidspaces Non-GKI内核配置</a></p>
+</li>
+</ul>
+<h3 id="1-4-设备适配要求"><a href="#1-4-设备适配要求" class="headerlink" title="1.4 设备适配要求"></a>1.4 设备适配要求</h3><p>内核仅适配<strong>EMUI 9.1.0.312</strong>版本，系统版本不匹配会出现HAL层兼容问题，导致加密WiFi无法连接。不愿降级系统可尝试扩容分区后刷入旧版vendor镜像兜底适配。</p>
+<h2 id="二、源码获取与基础环境配置"><a href="#二、源码获取与基础环境配置" class="headerlink" title="二、源码获取与基础环境配置"></a>二、源码获取与基础环境配置</h2><h3 id="2-1-拉取内核源码"><a href="#2-1-拉取内核源码" class="headerlink" title="2.1 拉取内核源码"></a>2.1 拉取内核源码</h3><p>在Linux终端执行以下命令，克隆适配EMUI9.1的麒麟970内核源码：</p>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">git <span class="built_in">clone</span> https://github.com/HoleHolo/kirin970-kernel-based-on-emui9.1.git</span><br><span class="line"><span class="built_in">cd</span> kirin970-kernel-based-on-emui9.1</span><br></pre></td></tr></table></figure>
+<h3 id="2-2-源码基础特性说明"><a href="#2-2-源码基础特性说明" class="headerlink" title="2.2 源码基础特性说明"></a>2.2 源码基础特性说明</h3><p>该源码已完成基础优化，无需二次修改：</p>
+<ul>
+<li><p>默认集成gcc 10.3编译器，可在Makefile中添加 <code>-w</code> 参数忽略编译警告；</p>
+</li>
+<li><p>去除华为原生内核Root检测、dm-verify校验；</p>
+</li>
+<li><p>支持SELinux状态自定义修改、新增多类调度器、WireGuard等功能；</p>
+</li>
+<li><p>支持Github Action自动化定时编译。</p>
+</li>
+</ul>
+<h3 id="2-3-源码分支选择"><a href="#2-3-源码分支选择" class="headerlink" title="2.3 源码分支选择"></a>2.3 源码分支选择</h3><ul>
+<li><p><strong>main分支（推荐）</strong>：经过编译、实机测试，稳定性最佳，适合日常使用；</p>
+</li>
+<li><p><strong>pure分支</strong>：极简修改，无KernelSU/ReSukiSU，仅基础适配；</p>
+</li>
+<li><p><strong>common分支</strong>：同步AOSP上游内核，稳定性差，仅用于开发测试；</p>
+</li>
+<li><p><strong>experiment分支</strong>：集成各类开发者补丁，自定义修改较多。</p>
+</li>
+</ul>
+<h2 id="三、内核集成ReSukiSU（Non-GKI老内核适配）"><a href="#三、内核集成ReSukiSU（Non-GKI老内核适配）" class="headerlink" title="三、内核集成ReSukiSU（Non-GKI老内核适配）"></a>三、内核集成ReSukiSU（Non-GKI老内核适配）</h2><p>ReSukiSU最低支持内核3.4版本，完美适配麒麟970老旧Non-GKI内核，适配步骤如下：</p>
+<h3 id="3-1-注入ReSukiSU源码"><a href="#3-1-注入ReSukiSU源码" class="headerlink" title="3.1 注入ReSukiSU源码"></a>3.1 注入ReSukiSU源码</h3><p>在内核根目录执行命令，自动拉取并部署ReSukiSU内核文件：</p>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">curl -LSs <span class="string">&quot;https://raw.githubusercontent.com/ReSukiSU/ReSukiSU/main/kernel/setup.sh&quot;</span> | bash</span><br></pre></td></tr></table></figure>
+<h3 id="3-2-修改内核defconfig配置"><a href="#3-2-修改内核defconfig配置" class="headerlink" title="3.2 修改内核defconfig配置"></a>3.2 修改内核defconfig配置</h3><p>麒麟970内核配置文件路径：<code>arch/arm64/configs/merge_kirin970_defconfig</code>，添加以下配置开启功能：</p>
+<figure class="highlight plaintext"><figcaption><span>Text</span></figcaption><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line"># 启用ReSukiSU核心功能</span><br><span class="line">CONFIG_KSU=y</span><br><span class="line"># 手动钩子适配老内核</span><br><span class="line">CONFIG_KSU_MANUAL_HOOK=y</span><br><span class="line"># 开启SUSFS文件系统支持（可选）</span><br><span class="line">CONFIG_KSU_SUSFS=y</span><br></pre></td></tr></table></figure>
+<p>注：Non-GKI内核SUSFS补丁需手动移植适配，官方弃置分支不支持自动适配。</p>
+<h3 id="3-3-基础适配优化"><a href="#3-3-基础适配优化" class="headerlink" title="3.3 基础适配优化"></a>3.3 基础适配优化</h3><p>参考Coconutat大佬EMUI9.1适配教程，修复老内核兼容问题，保留ReSukiSU运行基础环境，保存defconfig配置文件。</p>
+<h2 id="四、内核集成Droidspaces（核心避坑方案）"><a href="#四、内核集成Droidspaces（核心避坑方案）" class="headerlink" title="四、内核集成Droidspaces（核心避坑方案）"></a>四、内核集成Droidspaces（核心避坑方案）</h2><p>麒麟970内核直接完整开启Droidspaces功能，会导致手机<strong>卡开机第一屏、无法进系统</strong>，经实测排查，卡死根因为网络命名空间/桥接栈冲突，非IPC配置问题。</p>
+<h3 id="4-1-关键配置修改（可开机核心方案）"><a href="#4-1-关键配置修改（可开机核心方案）" class="headerlink" title="4.1 关键配置修改（可开机核心方案）"></a>4.1 关键配置修改（可开机核心方案）</h3><p>修改 <code>arch/arm64/configs/merge_kirin970_defconfig</code> 配置文件，严格按照以下规则开关参数：</p>
+<h4 id="4-1-1-必须关闭（解决卡启动）"><a href="#4-1-1-必须关闭（解决卡启动）" class="headerlink" title="4.1.1 必须关闭（解决卡启动）"></a>4.1.1 必须关闭（解决卡启动）</h4><ul>
+<li><p>网络隔离核心项：<code>NET_NS</code></p>
+</li>
+<li><p>桥接/虚拟网卡相关：<code>BRIDGE_NETFILTER</code>、<code>ADDRTYPE</code>、<code>BRIDGE</code>、<code>VETH</code></p>
+</li>
+<li><p>辅助关闭：<code>SYSVIPC</code>、<code>POSIX_MQUEUE</code></p>
+</li>
+</ul>
+<h4 id="4-1-2-必须保留（保证功能正常）"><a href="#4-1-2-必须保留（保证功能正常）" class="headerlink" title="4.1.2 必须保留（保证功能正常）"></a>4.1.2 必须保留（保证功能正常）</h4><ul>
+<li><p>命名空间基础：<code>NAMESPACES</code>、<code>PID_NS</code></p>
+</li>
+<li><p>ReSukiSU全部已开启配置</p>
+</li>
+<li><p>华为原生管控：<code>HW_CGROUP_PIDS</code>、<code>TASK_PROTECT_LRU</code></p>
+</li>
+</ul>
+<h4 id="4-1-3-必须关闭（系统稳定）"><a href="#4-1-3-必须关闭（系统稳定）" class="headerlink" title="4.1.3 必须关闭（系统稳定）"></a>4.1.3 必须关闭（系统稳定）</h4><ul>
+<li><code>MEMCG</code>：非开机关键，但关闭可提升系统稳定性</li>
+</ul>
+<h3 id="4-2-适配结论"><a href="#4-2-适配结论" class="headerlink" title="4.2 适配结论"></a>4.2 适配结论</h3><p>仅关闭IPC配置仍会卡启动，<strong>必须同步关闭网络命名空间及桥接栈相关配置</strong>才能正常开机；该方案会轻微缺失Droidspaces部分网络隔离能力，为当前麒麟970设备唯一可稳定开机的适配方案。</p>
+<h2 id="五、AI辅助编译内核"><a href="#五、AI辅助编译内核" class="headerlink" title="五、AI辅助编译内核"></a>五、AI辅助编译内核</h2><ol>
+<li><p>Linux环境下完成所有内核配置修改并保存；</p>
+</li>
+<li><p>执行 <code>npx zcf</code> 完成编译环境配置；</p>
+</li>
+<li><p>根据使用的AI工具执行对应编译命令：</p>
+</li>
+</ol>
+<ul>
+<li><p>Codex：<code>codex --dangerously-bypass-approvals-and-sandbox</code></p>
+</li>
+<li><p>Claude：<code>IS_SANDBOX=1 claude --dangerously-skip-permissions</code></p>
+</li>
+</ul>
+<ol>
+<li>等待编译完成，输出 <code>kernel.img</code> 内核镜像文件。</li>
+</ol>
+<h2 id="六、内核刷入教程"><a href="#六、内核刷入教程" class="headerlink" title="六、内核刷入教程"></a>六、内核刷入教程</h2><h3 id="6-1-前置准备"><a href="#6-1-前置准备" class="headerlink" title="6.1 前置准备"></a>6.1 前置准备</h3><p>设备解锁Bootloader，进入Fastboot模式，电脑配置好Fastboot环境。</p>
+<h3 id="6-2-刷入命令"><a href="#6-2-刷入命令" class="headerlink" title="6.2 刷入命令"></a>6.2 刷入命令</h3><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">fastboot flash kernel kernel.img</span><br></pre></td></tr></table></figure>
+<h3 id="6-3-刷入后说明"><a href="#6-3-刷入后说明" class="headerlink" title="6.3 刷入后说明"></a>6.3 刷入后说明</h3><ul>
+<li><p>刷入完成后重启设备，首次开机耗时较长，耐心等待；</p>
+</li>
+<li><p>支持SELinux两种模式：<strong>permissive宽容模式</strong>（限制更少、适配性强）、<strong>enforcing强制模式</strong>（安全性更高），可自行切换；</p>
+</li>
+<li><p>系统需保持EMUI9.1.0.312版本，避免WiFi加密异常。</p>
+</li>
+</ul>
+<h2 id="七、常见问题总结"><a href="#七、常见问题总结" class="headerlink" title="七、常见问题总结"></a>七、常见问题总结</h2><ol>
+<li><p><strong>设备卡开机第一屏</strong>：检查是否完整关闭 <code>NET_NS/VETH/BRIDGE</code> 等网络相关配置；</p>
+</li>
+<li><p><strong>加密WiFi无法连接</strong>：系统版本不匹配，降级至9.1.0.312或替换旧版vendor镜像；</p>
+</li>
+<li><p><strong>编译报错</strong>：确认Linux环境、gcc10.3工具链正常，在Makefile添加 <code>-w</code> 忽略编译器警告；</p>
+</li>
+<li><p><strong>ReSukiSU无法生效</strong>：检查defconfig中 <code>CONFIG_KSU=y</code> 是否正确开启，老内核需手动补全钩子适配。</p>
+</li>
+</ol>
+</article><div class="post-copyright"><div class="post-copyright__author"><span class="post-copyright-meta"><i class="fas fa-circle-user fa-fw"></i>文章作者: </span><span class="post-copyright-info"><a href="https://aquamind.dpdns.org">风雨</a></span></div><div class="post-copyright__type"><span class="post-copyright-meta"><i class="fas fa-square-arrow-up-right fa-fw"></i>文章链接: </span><span class="post-copyright-info"><a href="https://aquamind.dpdns.org/2026/06/20/%E5%8D%8E%E4%B8%BA970%E8%BF%9B%E8%A1%8C%E5%86%85%E6%A0%B8%E7%BC%96%E8%BE%91%E5%92%8C%E6%94%AF%E6%8C%81Droidspaces/">https://aquamind.dpdns.org/2026/06/20/%E5%8D%8E%E4%B8%BA970%E8%BF%9B%E8%A1%8C%E5%86%85%E6%A0%B8%E7%BC%96%E8%BE%91%E5%92%8C%E6%94%AF%E6%8C%81Droidspaces/</a></span></div><div class="post-copyright__notice"><span class="post-copyright-meta"><i class="fas fa-circle-exclamation fa-fw"></i>版权声明: </span><span class="post-copyright-info">本博客所有文章除特别声明外，均采用 <a href="https://creativecommons.org/licenses/by-nc-sa/4.0/" target="_blank">CC BY-NC-SA 4.0</a> 许可协议。转载请注明来源 <a href="https://aquamind.dpdns.org" target="_blank">风雨の小窝</a>！</span></div></div><div class="tag_share"><div class="post-share"><div class="social-share" data-image="https://tc.alcy.cc/tc/20260121/1dff5cedde6b59bf0ce8d3099d47231e.webp" data-sites="facebook,twitter,wechat,weibo,qq"></div><link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/butterfly-extsrc/sharejs/dist/css/share.min.css" media="print" onload="this.media='all'"><script src="https://cdn.jsdelivr.net/npm/butterfly-extsrc/sharejs/dist/js/social-share.min.js" defer></script></div></div><nav class="pagination-post" id="pagination"><a class="pagination-related  no-desc" href="/2026/06/14/chroot%E5%AE%B9%E5%99%A8%E6%A8%A1%E5%9D%97%E5%AE%89%E8%A3%85%E9%85%8D%E7%BD%AEhermes/" title="chroot容器模块安装配置hermes"><img class="cover" src= "data:image/gif;base64,R0lGODlhAQABAIAAAAAAAP///yH5BAEAAAAALAAAAAABAAEAAAIBRAA7" data-lazy-src="https://tc.alcy.cc/tc/20260429/e77038eb7b2eaf5698f060db11186744.webp" onerror="onerror=null;src='/img/404.jpg'" alt="cover of previous post"><div class="info"><div class="info-1"><div class="info-item-1">上一篇</div><div class="info-item-2">chroot容器模块安装配置hermes</div></div></div></a><a class="pagination-related  no-desc" href="/2026/06/20/%E9%BA%92%E9%BA%9F970%E7%9A%84Droidspaces%E5%AE%B9%E5%99%A8%E9%85%8D%E7%BD%AE/" title="麒麟970的Droidspaces容器配置"><img class="cover" src= "data:image/gif;base64,R0lGODlhAQABAIAAAAAAAP///yH5BAEAAAAALAAAAAABAAEAAAIBRAA7" data-lazy-src="https://tc.alcy.cc/tc/20260429/8a72fc0763e58740c41215554e58218f.webp" onerror="onerror=null;src='/img/404.jpg'" alt="cover of next post"><div class="info text-right"><div class="info-1"><div class="info-item-1">下一篇</div><div class="info-item-2">麒麟970的Droidspaces容器配置</div></div></div></a></nav></div><div class="aside-content" id="aside-content"><div class="card-widget card-info text-center"><div class="avatar-img"><img src= "data:image/gif;base64,R0lGODlhAQABAIAAAAAAAP///yH5BAEAAAAALAAAAAABAAEAAAIBRAA7" data-lazy-src="https://pic1.imgdb.cn/item/67fb9dc888c538a9b5cdcfff.jpg" onerror="this.onerror=null;this.src='/img/friend_404.gif'" alt="avatar"/></div><div class="author-info-name">风雨</div><div class="author-info-description">Future is now</div><div class="site-data"><a href="/archives/"><div class="headline">文章</div><div class="length-num">16</div></a><a href="/tags/"><div class="headline">标签</div><div class="length-num">2</div></a><a href="/categories/"><div class="headline">分类</div><div class="length-num">2</div></a></div><a id="card-info-btn" target="_blank" rel="noopener" href="https://github.com/goodtyu"><i class="fab fa-github"></i><span>Follow Me</span></a><div class="card-info-social-icons"><a class="social-icon" href="https://github.com/goodtyu" target="_blank" title="Github"><i class="fab fa-github" style="color: #24292e;"></i></a></div></div><div class="card-widget card-announcement"><div class="item-headline"><i class="fas fa-bullhorn fa-shake"></i><span>公告栏</span></div><div class="announcement_content">欢迎来到我的博客</div></div><div class="sticky_layout"><div class="card-widget" id="card-toc"><div class="item-headline"><i class="fas fa-stream"></i><span>目录</span><span class="toc-percentage"></span></div><div class="toc-content"><ol class="toc"><li class="toc-item toc-level-1"><a class="toc-link" href="#%E5%8D%8E%E4%B8%BA%E9%BA%92%E9%BA%9F970%E5%86%85%E6%A0%B8%E7%BC%96%E8%BE%91%E9%9B%86%E6%88%90ReSukiSU-Droidspaces%E5%AE%8C%E6%95%B4%E6%95%99%E7%A8%8B"><span class="toc-text">华为麒麟970内核编辑集成ReSukiSU+Droidspaces完整教程</span></a><ol class="toc-child"><li class="toc-item toc-level-2"><a class="toc-link" href="#%E4%B8%80%E3%80%81%E5%89%8D%E7%BD%AE%E7%8E%AF%E5%A2%83%E4%B8%8E%E5%B7%A5%E5%85%B7%E8%AF%B4%E6%98%8E"><span class="toc-text">一、前置环境与工具说明</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#1-1-%E7%BC%96%E8%AF%91%E8%BF%90%E8%A1%8C%E7%8E%AF%E5%A2%83"><span class="toc-text">1.1 编译运行环境</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#1-2-AI%E7%BC%96%E8%AF%91%E8%BE%85%E5%8A%A9%E5%B7%A5%E5%85%B7%E9%85%8D%E7%BD%AE"><span class="toc-text">1.2 AI编译辅助工具配置</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#1-3-%E6%A0%B8%E5%BF%83%E5%8F%82%E8%80%83%E8%B5%84%E6%BA%90"><span class="toc-text">1.3 核心参考资源</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#1-4-%E8%AE%BE%E5%A4%87%E9%80%82%E9%85%8D%E8%A6%81%E6%B1%82"><span class="toc-text">1.4 设备适配要求</span></a></li></ol></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%E4%BA%8C%E3%80%81%E6%BA%90%E7%A0%81%E8%8E%B7%E5%8F%96%E4%B8%8E%E5%9F%BA%E7%A1%80%E7%8E%AF%E5%A2%83%E9%85%8D%E7%BD%AE"><span class="toc-text">二、源码获取与基础环境配置</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#2-1-%E6%8B%89%E5%8F%96%E5%86%85%E6%A0%B8%E6%BA%90%E7%A0%81"><span class="toc-text">2.1 拉取内核源码</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#2-2-%E6%BA%90%E7%A0%81%E5%9F%BA%E7%A1%80%E7%89%B9%E6%80%A7%E8%AF%B4%E6%98%8E"><span class="toc-text">2.2 源码基础特性说明</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#2-3-%E6%BA%90%E7%A0%81%E5%88%86%E6%94%AF%E9%80%89%E6%8B%A9"><span class="toc-text">2.3 源码分支选择</span></a></li></ol></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%E4%B8%89%E3%80%81%E5%86%85%E6%A0%B8%E9%9B%86%E6%88%90ReSukiSU%EF%BC%88Non-GKI%E8%80%81%E5%86%85%E6%A0%B8%E9%80%82%E9%85%8D%EF%BC%89"><span class="toc-text">三、内核集成ReSukiSU（Non-GKI老内核适配）</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#3-1-%E6%B3%A8%E5%85%A5ReSukiSU%E6%BA%90%E7%A0%81"><span class="toc-text">3.1 注入ReSukiSU源码</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#3-2-%E4%BF%AE%E6%94%B9%E5%86%85%E6%A0%B8defconfig%E9%85%8D%E7%BD%AE"><span class="toc-text">3.2 修改内核defconfig配置</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#3-3-%E5%9F%BA%E7%A1%80%E9%80%82%E9%85%8D%E4%BC%98%E5%8C%96"><span class="toc-text">3.3 基础适配优化</span></a></li></ol></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%E5%9B%9B%E3%80%81%E5%86%85%E6%A0%B8%E9%9B%86%E6%88%90Droidspaces%EF%BC%88%E6%A0%B8%E5%BF%83%E9%81%BF%E5%9D%91%E6%96%B9%E6%A1%88%EF%BC%89"><span class="toc-text">四、内核集成Droidspaces（核心避坑方案）</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#4-1-%E5%85%B3%E9%94%AE%E9%85%8D%E7%BD%AE%E4%BF%AE%E6%94%B9%EF%BC%88%E5%8F%AF%E5%BC%80%E6%9C%BA%E6%A0%B8%E5%BF%83%E6%96%B9%E6%A1%88%EF%BC%89"><span class="toc-text">4.1 关键配置修改（可开机核心方案）</span></a><ol class="toc-child"><li class="toc-item toc-level-4"><a class="toc-link" href="#4-1-1-%E5%BF%85%E9%A1%BB%E5%85%B3%E9%97%AD%EF%BC%88%E8%A7%A3%E5%86%B3%E5%8D%A1%E5%90%AF%E5%8A%A8%EF%BC%89"><span class="toc-text">4.1.1 必须关闭（解决卡启动）</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#4-1-2-%E5%BF%85%E9%A1%BB%E4%BF%9D%E7%95%99%EF%BC%88%E4%BF%9D%E8%AF%81%E5%8A%9F%E8%83%BD%E6%AD%A3%E5%B8%B8%EF%BC%89"><span class="toc-text">4.1.2 必须保留（保证功能正常）</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#4-1-3-%E5%BF%85%E9%A1%BB%E5%85%B3%E9%97%AD%EF%BC%88%E7%B3%BB%E7%BB%9F%E7%A8%B3%E5%AE%9A%EF%BC%89"><span class="toc-text">4.1.3 必须关闭（系统稳定）</span></a></li></ol></li><li class="toc-item toc-level-3"><a class="toc-link" href="#4-2-%E9%80%82%E9%85%8D%E7%BB%93%E8%AE%BA"><span class="toc-text">4.2 适配结论</span></a></li></ol></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%E4%BA%94%E3%80%81AI%E8%BE%85%E5%8A%A9%E7%BC%96%E8%AF%91%E5%86%85%E6%A0%B8"><span class="toc-text">五、AI辅助编译内核</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%E5%85%AD%E3%80%81%E5%86%85%E6%A0%B8%E5%88%B7%E5%85%A5%E6%95%99%E7%A8%8B"><span class="toc-text">六、内核刷入教程</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#6-1-%E5%89%8D%E7%BD%AE%E5%87%86%E5%A4%87"><span class="toc-text">6.1 前置准备</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#6-2-%E5%88%B7%E5%85%A5%E5%91%BD%E4%BB%A4"><span class="toc-text">6.2 刷入命令</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#6-3-%E5%88%B7%E5%85%A5%E5%90%8E%E8%AF%B4%E6%98%8E"><span class="toc-text">6.3 刷入后说明</span></a></li></ol></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%E4%B8%83%E3%80%81%E5%B8%B8%E8%A7%81%E9%97%AE%E9%A2%98%E6%80%BB%E7%BB%93"><span class="toc-text">七、常见问题总结</span></a></li></ol></li></ol></div></div><div class="card-widget card-recent-post"><div class="item-headline"><i class="fas fa-history"></i><span>最新文章</span></div><div class="aside-list"><div class="aside-list-item"><a class="thumbnail" href="/2026/06/20/%E9%BA%92%E9%BA%9F970%E7%9A%84Droidspaces%E5%AE%B9%E5%99%A8%E9%85%8D%E7%BD%AE/" title="麒麟970的Droidspaces容器配置"><img src= "data:image/gif;base64,R0lGODlhAQABAIAAAAAAAP///yH5BAEAAAAALAAAAAABAAEAAAIBRAA7" data-lazy-src="https://tc.alcy.cc/tc/20260429/8a72fc0763e58740c41215554e58218f.webp" onerror="this.onerror=null;this.src='/img/404.jpg'" alt="麒麟970的Droidspaces容器配置"/></a><div class="content"><a class="title" href="/2026/06/20/%E9%BA%92%E9%BA%9F970%E7%9A%84Droidspaces%E5%AE%B9%E5%99%A8%E9%85%8D%E7%BD%AE/" title="麒麟970的Droidspaces容器配置">麒麟970的Droidspaces容器配置</a><time datetime="2026-06-20T14:30:36.000Z" title="发表于 2026-06-20 22:30:36">2026-06-20</time></div></div><div class="aside-list-item"><a class="thumbnail" href="/2026/06/20/%E5%8D%8E%E4%B8%BA970%E8%BF%9B%E8%A1%8C%E5%86%85%E6%A0%B8%E7%BC%96%E8%BE%91%E5%92%8C%E6%94%AF%E6%8C%81Droidspaces/" title="华为970进行内核编辑和支持Droidspaces"><img src= "data:image/gif;base64,R0lGODlhAQABAIAAAAAAAP///yH5BAEAAAAALAAAAAABAAEAAAIBRAA7" data-lazy-src="https://tc.alcy.cc/tc/20260121/1dff5cedde6b59bf0ce8d3099d47231e.webp" onerror="this.onerror=null;this.src='/img/404.jpg'" alt="华为970进行内核编辑和支持Droidspaces"/></a><div class="content"><a class="title" href="/2026/06/20/%E5%8D%8E%E4%B8%BA970%E8%BF%9B%E8%A1%8C%E5%86%85%E6%A0%B8%E7%BC%96%E8%BE%91%E5%92%8C%E6%94%AF%E6%8C%81Droidspaces/" title="华为970进行内核编辑和支持Droidspaces">华为970进行内核编辑和支持Droidspaces</a><time datetime="2026-06-20T14:07:45.000Z" title="发表于 2026-06-20 22:07:45">2026-06-20</time></div></div><div class="aside-list-item"><a class="thumbnail" href="/2026/06/14/chroot%E5%AE%B9%E5%99%A8%E6%A8%A1%E5%9D%97%E5%AE%89%E8%A3%85%E9%85%8D%E7%BD%AEhermes/" title="chroot容器模块安装配置hermes"><img src= "data:image/gif;base64,R0lGODlhAQABAIAAAAAAAP///yH5BAEAAAAALAAAAAABAAEAAAIBRAA7" data-lazy-src="https://tc.alcy.cc/tc/20260429/e77038eb7b2eaf5698f060db11186744.webp" onerror="this.onerror=null;this.src='/img/404.jpg'" alt="chroot容器模块安装配置hermes"/></a><div class="content"><a class="title" href="/2026/06/14/chroot%E5%AE%B9%E5%99%A8%E6%A8%A1%E5%9D%97%E5%AE%89%E8%A3%85%E9%85%8D%E7%BD%AEhermes/" title="chroot容器模块安装配置hermes">chroot容器模块安装配置hermes</a><time datetime="2026-06-14T12:48:17.000Z" title="发表于 2026-06-14 20:48:17">2026-06-14</time></div></div><div class="aside-list-item"><a class="thumbnail" href="/2026/06/14/%E5%8D%8E%E4%B8%BA%E6%89%8B%E6%9C%BAroot%E6%93%8D%E4%BD%9C%E6%B5%81%E7%A8%8B/" title="华为手机root操作流程"><img src= "data:image/gif;base64,R0lGODlhAQABAIAAAAAAAP///yH5BAEAAAAALAAAAAABAAEAAAIBRAA7" data-lazy-src="https://tc.alcy.cc/tc/20260121/b57bb9f25cf971de82afeadddeba094a.webp" onerror="this.onerror=null;this.src='/img/404.jpg'" alt="华为手机root操作流程"/></a><div class="content"><a class="title" href="/2026/06/14/%E5%8D%8E%E4%B8%BA%E6%89%8B%E6%9C%BAroot%E6%93%8D%E4%BD%9C%E6%B5%81%E7%A8%8B/" title="华为手机root操作流程">华为手机root操作流程</a><time datetime="2026-06-14T12:35:02.000Z" title="发表于 2026-06-14 20:35:02">2026-06-14</time></div></div><div class="aside-list-item"><a class="thumbnail" href="/2026/06/12/Dockroot%E5%B8%B8%E7%94%A8%E5%91%BD%E4%BB%A4%E5%92%8Chermers%E7%9A%84%E9%85%8D%E7%BD%AE/" title="Dockroot常用命令和hermers的配置"><img src= "data:image/gif;base64,R0lGODlhAQABAIAAAAAAAP///yH5BAEAAAAALAAAAAABAAEAAAIBRAA7" data-lazy-src="https://tc.alcy.cc/tc/20260121/cdbf41ce8489a6ac6bf06b6b75c5c8c4.webp" onerror="this.onerror=null;this.src='/img/404.jpg'" alt="Dockroot常用命令和hermers的配置"/></a><div class="content"><a class="title" href="/2026/06/12/Dockroot%E5%B8%B8%E7%94%A8%E5%91%BD%E4%BB%A4%E5%92%8Chermers%E7%9A%84%E9%85%8D%E7%BD%AE/" title="Dockroot常用命令和hermers的配置">Dockroot常用命令和hermers的配置</a><time datetime="2026-06-12T07:56:31.000Z" title="发表于 2026-06-12 15:56:31">2026-06-12</time></div></div></div></div></div></div></main><footer id="footer"><div id="footer-wrap"><div class="copyright">&copy;2025 - 2026 By 风雨</div></div></footer></div><div id="rightside"><div id="rightside-config-hide"><button id="readmode" type="button" title="阅读模式"><i class="fas fa-book-open"></i></button><button id="darkmode" type="button" title="日间和夜间模式切换"><i class="fas fa-adjust"></i></button><button id="hide-aside-btn" type="button" title="单栏和双栏切换"><i class="fas fa-arrows-alt-h"></i></button></div><div id="rightside-config-show"><button id="rightside-config" type="button" title="设置"><i class="fas fa-cog fa-spin"></i></button><button class="close" id="mobile-toc-button" type="button" title="目录"><i class="fas fa-list-ul"></i></button><button id="go-up" type="button" title="回到顶部"><span class="scroll-percent"></span><i class="fas fa-arrow-up"></i></button></div></div><div><script src="/js/utils.js"></script><script src="/js/main.js"></script><script src="https://cdn.jsdelivr.net/npm/instant.page/instantpage.min.js" type="module"></script><script src="https://cdn.jsdelivr.net/npm/vanilla-lazyload/dist/lazyload.iife.min.js"></script><script src="https://cdn.jsdelivr.net/npm/node-snackbar/dist/snackbar.min.js"></script><div class="js-pjax"></div><script async src="//at.alicdn.com/t/c/font_4893430_1v1qg4wrw3l.js"></script><script src="/js/winbox.bundle.min.js"></script><script src="/js/backgroundImage.js"></script><script async data-pjax src="//busuanzi.ibruce.info/busuanzi/2.3/busuanzi.pure.mini.js"></script><div id="local-search"><div class="search-dialog"><nav class="search-nav"><span class="search-dialog-title">搜索</span><span id="loading-status"></span><button class="search-close-button"><i class="fas fa-times"></i></button></nav><div class="text-center" id="loading-database"><i class="fas fa-spinner fa-pulse"></i><span>  数据加载中</span></div><div class="search-wrap"><div id="local-search-input"><div class="local-search-box"><input class="local-search-box--input" placeholder="搜索文章" type="text"/></div></div><hr/><div id="local-search-results"></div><div id="local-search-stats-wrap"></div></div></div><div id="search-mask"></div><script src="/js/search/local-search.js"></script></div></div><!-- hexo injector body_end start --> <script data-pjax>if(document.getElementById('recent-posts') && (location.pathname ==='/'|| '/' ==='all')){
+    var parent = document.getElementById('recent-posts');
+    var child = '<div class="recent-post-item" style="width:100%;height: auto"><div id="catalog_magnet"><div class="magnet_item"><a class="magnet_link" href="https://aquamind.dpdns.org/categories/运维/"><div class="magnet_link_context" style=""><span style="font-weight:500;flex:1">📚 运维知识 (5)</span><span style="padding:0px 4px;border-radius: 8px;"><i class="fas fa-arrow-circle-right"></i></span></div></a></div><div class="magnet_item"><a class="magnet_link" href="https://aquamind.dpdns.org/categories/项目/"><div class="magnet_link_context" style=""><span style="font-weight:500;flex:1">👩‍💻 学的的项目 (1)</span><span style="padding:0px 4px;border-radius: 8px;"><i class="fas fa-arrow-circle-right"></i></span></div></a></div><a class="magnet_link_more"  href="https://aquamind.dpdns.org/categories" style="flex:1;text-align: center;margin-bottom: 10px;">查看更多...</a></div></div>';
+    console.log('已挂载magnet')
+    parent.insertAdjacentHTML("afterbegin",child)}
+     </script><style>#catalog_magnet{flex-wrap: wrap;display: flex;width:100%;justify-content:space-between;padding: 10px 10px 0 10px;align-content: flex-start;}.magnet_item{flex-basis: calc(50% - 5px);background: #f2f2f2;margin-bottom: 10px;border-radius: 8px;transition: all 0.2s ease-in-out;}.magnet_item:hover{background: #69e8f2}.magnet_link_more{color:#555}.magnet_link{color:black}.magnet_link:hover{color:white}@media screen and (max-width: 600px) {.magnet_item {flex-basis: 100%;}}.magnet_link_context{display:flex;padding: 10px;font-size:16px;transition: all 0.2s ease-in-out;}.magnet_link_context:hover{padding: 10px 20px;}</style>
+    <style></style><script data-pjax>
+  function butterfly_footer_beautify_injector_config(){
+    var parent_div_git = document.getElementById('footer-wrap');
+    var item_html = '<div id="workboard"></div><p id="ghbdages"><a class="github-badge" target="_blank" href="https://hexo.io/" style="margin-inline:5px" data-title="博客框架为Hexo_v6.2.0" title=""><img src= "data:image/gif;base64,R0lGODlhAQABAIAAAAAAAP///yH5BAEAAAAALAAAAAABAAEAAAIBRAA7" data-lazy-src="https://img.shields.io/badge/Frame-Hexo-blue?style=flat&amp;logo=hexo" alt=""/></a><a class="github-badge" target="_blank" href="https://butterfly.js.org/" style="margin-inline:5px" data-title="主题版本Butterfly_v4.3.1" title=""><img src= "data:image/gif;base64,R0lGODlhAQABAIAAAAAAAP///yH5BAEAAAAALAAAAAABAAEAAAIBRAA7" data-lazy-src="https://img.shields.io/badge/Theme-Butterfly-6513df?style=flat&amp;logo=bitdefender" alt=""/></a><a class="github-badge" target="_blank" href="https://vercel.com/" style="margin-inline:5px" data-title="本站采用多线部署，主线路托管于Vercel" title=""><img src= "data:image/gif;base64,R0lGODlhAQABAIAAAAAAAP///yH5BAEAAAAALAAAAAABAAEAAAIBRAA7" data-lazy-src="https://img.shields.io/badge/Hosted-Vercel-brightgreen?style=flat&amp;logo=Vercel" alt=""/></a><a class="github-badge" target="_blank" href="https://dashboard.4everland.org/" style="margin-inline:5px" data-title="本站采用多线部署，备用线路托管于4EVERLAND" title=""><img src= "data:image/gif;base64,R0lGODlhAQABAIAAAAAAAP///yH5BAEAAAAALAAAAAABAAEAAAIBRAA7" data-lazy-src="https://img.shields.io/badge/Hosted-4EVERLAND-22DDDD?style=flat&amp;logo=IPFS" alt=""/></a><a class="github-badge" target="_blank" href="https://github.com/" style="margin-inline:5px" data-title="本站项目由Github托管" title=""><img src= "data:image/gif;base64,R0lGODlhAQABAIAAAAAAAP///yH5BAEAAAAALAAAAAABAAEAAAIBRAA7" data-lazy-src="https://img.shields.io/badge/Source-Github-d021d6?style=flat&amp;logo=GitHub" alt=""/></a><a class="github-badge" target="_blank" href="http://creativecommons.org/licenses/by-nc-sa/4.0/" style="margin-inline:5px" data-title="本站采用知识共享署名-非商业性使用-相同方式共享4.0国际许可协议进行许可" title=""><img src= "data:image/gif;base64,R0lGODlhAQABAIAAAAAAAP///yH5BAEAAAAALAAAAAABAAEAAAIBRAA7" data-lazy-src="https://img.shields.io/badge/Copyright-BY--NC--SA%204.0-d42328?style=flat&amp;logo=Claris" alt=""/></a></p>';
+    console.log('已挂载butterfly_footer_beautify')
+    parent_div_git.insertAdjacentHTML("beforeend",item_html)
+    }
+  var elist = 'null'.split(',');
+  var cpage = location.pathname;
+  var epage = 'all';
+  var flag = 0;
+
+  for (var i=0;i<elist.length;i++){
+    if (cpage.includes(elist[i])){
+      flag++;
+    }
+  }
+
+  if ((epage ==='all')&&(flag == 0)){
+    butterfly_footer_beautify_injector_config();
+  }
+  else if (epage === cpage){
+    butterfly_footer_beautify_injector_config();
+  }
+  </script><script async src="/js/runtime.js"></script><script data-pjax>
+  function butterfly_swiper_injector_config(){
+    var parent_div_git = document.getElementById('recent-posts');
+    var item_html = '<div class="recent-post-item" style="height: auto;width: 100%"><div class="blog-slider swiper-container-fade swiper-container-horizontal" id="swiper_container"><div class="blog-slider__wrp swiper-wrapper" style="transition-duration: 0ms;"><div class="blog-slider__item swiper-slide" style="width: 750px; opacity: 1; transform: translate3d(0px, 0px, 0px); transition-duration: 0ms;"><a class="blog-slider__img" href="2025/04/17/mysql的基础命令/" alt=""><img width="48" height="48" src= "data:image/gif;base64,R0lGODlhAQABAIAAAAAAAP///yH5BAEAAAAALAAAAAABAAEAAAIBRAA7" data-lazy-src="https://tc.alcy.cc/tc/20260121/bb4e9847da99a54024356989d4b3ea9f.webp" alt="" onerror="this.src=https://unpkg.zhimg.com/akilar-candyassets/image/loading.gif; this.onerror = null;"/></a><div class="blog-slider__content"><span class="blog-slider__code">2025-04-17</span><a class="blog-slider__title" href="2025/04/17/mysql的基础命令/" alt="">mysql的基础命令</a><div class="blog-slider__text">mysql的基础命令</div><a class="blog-slider__button" href="2025/04/17/mysql的基础命令/" alt="">详情   </a></div></div><div class="blog-slider__item swiper-slide" style="width: 750px; opacity: 1; transform: translate3d(0px, 0px, 0px); transition-duration: 0ms;"><a class="blog-slider__img" href="2025/07/03/中州养老系统的部署/" alt=""><img width="48" height="48" src= "data:image/gif;base64,R0lGODlhAQABAIAAAAAAAP///yH5BAEAAAAALAAAAAABAAEAAAIBRAA7" data-lazy-src="https://tc.alcy.cc/tc/20260121/c5354bb577db11c564d9479664441c6b.webp" alt="" onerror="this.src=https://unpkg.zhimg.com/akilar-candyassets/image/loading.gif; this.onerror = null;"/></a><div class="blog-slider__content"><span class="blog-slider__code">2025-07-03</span><a class="blog-slider__title" href="2025/07/03/中州养老系统的部署/" alt="">中州养老系统的部署</a><div class="blog-slider__text">中州养老系统的部署</div><a class="blog-slider__button" href="2025/07/03/中州养老系统的部署/" alt="">详情   </a></div></div><div class="blog-slider__item swiper-slide" style="width: 750px; opacity: 1; transform: translate3d(0px, 0px, 0px); transition-duration: 0ms;"><a class="blog-slider__img" href="2025/06/24/xshell链接/" alt=""><img width="48" height="48" src= "data:image/gif;base64,R0lGODlhAQABAIAAAAAAAP///yH5BAEAAAAALAAAAAABAAEAAAIBRAA7" data-lazy-src="https://tc.alcy.cc/tc/20260121/c7d3e0cd25e25d0be5aac6453e37282f.webp" alt="" onerror="this.src=https://unpkg.zhimg.com/akilar-candyassets/image/loading.gif; this.onerror = null;"/></a><div class="blog-slider__content"><span class="blog-slider__code">2025-06-24</span><a class="blog-slider__title" href="2025/06/24/xshell链接/" alt="">xshell链接</a><div class="blog-slider__text">远程链接和排除错误</div><a class="blog-slider__button" href="2025/06/24/xshell链接/" alt="">详情   </a></div></div><div class="blog-slider__item swiper-slide" style="width: 750px; opacity: 1; transform: translate3d(0px, 0px, 0px); transition-duration: 0ms;"><a class="blog-slider__img" href="2025/04/17/Linux基础命令/" alt=""><img width="48" height="48" src= "data:image/gif;base64,R0lGODlhAQABAIAAAAAAAP///yH5BAEAAAAALAAAAAABAAEAAAIBRAA7" data-lazy-src="https://tc.alcy.cc/tc/20260121/e8f340338fff4e22ce39e3818271bd2a.webp" alt="" onerror="this.src=https://unpkg.zhimg.com/akilar-candyassets/image/loading.gif; this.onerror = null;"/></a><div class="blog-slider__content"><span class="blog-slider__code">2025-04-17</span><a class="blog-slider__title" href="2025/04/17/Linux基础命令/" alt="">Linux基础命令</a><div class="blog-slider__text">linux基础的命令</div><a class="blog-slider__button" href="2025/04/17/Linux基础命令/" alt="">详情   </a></div></div></div><div class="blog-slider__pagination swiper-pagination-clickable swiper-pagination-bullets"></div></div></div>';
+    console.log('已挂载butterfly_swiper')
+    parent_div_git.insertAdjacentHTML("afterbegin",item_html)
+    }
+  var elist = 'undefined'.split(',');
+  var cpage = location.pathname;
+  var epage = '/';
+  var flag = 0;
+
+  for (var i=0;i<elist.length;i++){
+    if (cpage.includes(elist[i])){
+      flag++;
+    }
+  }
+
+  if ((epage ==='all')&&(flag == 0)){
+    butterfly_swiper_injector_config();
+  }
+  else if (epage === cpage){
+    butterfly_swiper_injector_config();
+  }
+  </script><script defer src="https://npm.elemecdn.com/hexo-butterfly-swiper/lib/swiper.min.js"></script><script defer data-pjax src="https://npm.elemecdn.com/hexo-butterfly-swiper/lib/swiper_init.js"></script><script async src="//at.alicdn.com/t/font_2032782_8d5kxvn09md.js"></script><!-- hexo injector body_end end --></body></html>

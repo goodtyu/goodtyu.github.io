@@ -1,0 +1,26 @@
+<svg width="154" height="20" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" aria-label="fengyu小窝: 下班啦≥▽≤" role="img">
+ <title>fengyu小窝: 下班啦≥▽≤</title>
+ <defs>
+  <linearGradient y2="100%" x2="0" id="a">
+   <stop stop-opacity="0" stop-color="#fcfcfc" offset="0"/>
+   <stop stop-opacity="0.1" offset="1"/>
+  </linearGradient>
+ </defs>
+ <g>
+  <title>Layer 1</title>
+  <g id="svg_1" stroke="#d5d5d5">
+   <rect id="svg_2" rx="2" height="19" width="82" y="0.5" x="0.5" fill="#fcfcfc"/>
+   <rect id="svg_3" fill="#fafafa" rx="2" height="19" width="65" y="0.5" x="88.5"/>
+   <rect id="svg_4" stroke="#fafafa" height="5" width="0.5" y="7.5" x="88"/>
+   <path id="svg_5" fill="#fafafa" stroke="d5d5d5" d="m88.5,6.5l-3,3l0,1l3,3"/>
+  </g>
+  <image id="svg_6" xlink:href="data:image/svg+xml;base64,PHN2ZyBmaWxsPSIjZjY4MzE1IiByb2xlPSJpbWciIHZpZXdCb3g9IjAgMCAyNCAyNCIgeG1sbnM9Imh0dHA6Ly93d3cudzMub3JnLzIwMDAvc3ZnIj48dGl0bGU+SG9tZUFkdmlzb3I8L3RpdGxlPjxwYXRoIGQ9Ik0xNS45OCAyLjQ0Mkg4LjAyTDAgMTAuNDZoMi4yNzVsNi44ODItNi44OCA2Ljg4MSA2Ljg4MUgyNGwtOC4wMi04LjAxOG0tLjQ5MiA5LjM0OEw5LjE1NyA1LjQ1OSA0LjAxIDEwLjYwNXY0Ljk4N2ExLjMzIDEuMzMgMCAwIDAgMS4zMjkgMS4zMjloNi4wNzdsNC42MzcgNC42Mzd2LTQuNjM3aDIuNTk4YTEuMzMgMS4zMyAwIDAgMCAxLjMzLTEuMzNWMTEuNzloLTQuNDk0WiIvPjwvc3ZnPg==" height="14" width="14" y="3" x="5"/>
+  <g id="svg_7" line-height="14px" font-size="110px" font-weight="700" text-rendering="geometricPrecision" font-family="Helvetica Neue,Helvetica,Arial,sans-serif" text-anchor="middle" fill="#333" aria-hidden="true">
+   <rect rx="2" height="19" width="82" y="0.5" x="0.5" fill="url(#a)" stroke="#d5d5d5" id="llink"/>
+   <text id="svg_8" textLength="550" transform="scale(.1)" fill="#fff" y="150" x="495" aria-hidden="true">fengyu小窝</text>
+   <text id="svg_9" textLength="550" transform="scale(.1)" y="140" x="495">fengyu小窝</text>
+   <text id="svg_10" textLength="570" transform="scale(.1)" fill="#fff" y="150" x="1205" aria-hidden="true">下班啦≥▽≤</text>
+   <text textLength="570" transform="scale(.1)" y="140" x="1205" id="rlink">下班啦≥▽≤</text>
+  </g>
+ </g>
+</svg>
